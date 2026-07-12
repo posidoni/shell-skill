@@ -1,5 +1,6 @@
 {
   "name": "shell-skill",
+  "description": "Skills for writing safe, correct shell — Bash, Zsh, POSIX sh, and Nushell — for humans and AI coding agents.",
   "owner": {
     "name": "Mikhail Kuznetsov (@posidoni)"
   },
