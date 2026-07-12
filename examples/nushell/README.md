@@ -13,6 +13,8 @@ bug, demonstrated at runtime in
 |------|-------|
 | `01-optional-cell-path.nu` | `get -o` returns `null` for a missing column instead of erroring |
 | `02-structured-data.nu` | filter/sort/select on a typed table, no text munging |
+| `03-typed-command.nu` | a typed `def` with a `--flag` and an input/output signature |
+| `04-error-handling.nu` | `try`/`catch` plus an optional cell path with `default` |
 
 ```sh
 # Static-check:
