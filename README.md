@@ -48,7 +48,7 @@ On Linux, use the pinned versions in
 
 ```sh
 task            # list every entrypoint
-task ci         # fmt-check, lint, examples, nushell, startup-demo, test
+task ci         # fmt-check, lint, examples, nushell, nushell-demo, test
 task hooks      # run pre-commit across the repo
 ```
 
@@ -100,21 +100,22 @@ Security reports: [SECURITY.md](SECURITY.md).
 
 ## References
 
-Structure and conventions here follow established Agent-Skills projects:
+The repository layout follows established Agent-Skills projects:
 
 - [anthropics/skills](https://github.com/anthropics/skills) — the official Agent
   Skills repo; `SKILL.md` frontmatter and progressive disclosure.
 - [Agent Skills specification](https://agentskills.io) — the open standard.
 - [netresearch/skill-repo-skill](https://github.com/netresearch/skill-repo-skill)
-  — skill-repository layout, packaging, and validation.
-- [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills)
-- Curated indexes:
-  [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code),
-  [travisvn/awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills),
-  [ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills),
-  [rohitg00/awesome-claude-code-toolkit](https://github.com/rohitg00/awesome-claude-code-toolkit),
-  [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents),
-  [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills).
+  — skill-repository layout, plugin packaging, and validation.
+
+Related projects and curated indexes of Agent Skills, worth a look:
+[addyosmani/agent-skills](https://github.com/addyosmani/agent-skills),
+[hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code),
+[travisvn/awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills),
+[ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills),
+[rohitg00/awesome-claude-code-toolkit](https://github.com/rohitg00/awesome-claude-code-toolkit),
+[VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents),
+[VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills).
 
 Standards cite the
 [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)

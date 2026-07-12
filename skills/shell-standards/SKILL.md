@@ -10,9 +10,10 @@ description: >-
 # Shell standards
 
 The non-negotiable baseline for writing Bash that does not silently corrupt data
-or hide failures. Each rule links to a runnable good/bad pair in
-[`examples/standards/`](../../examples/standards/) and is explained in depth,
-with citations, in [`reference/shell-standards.md`](../../reference/shell-standards.md).
+or hide failures. Every rule is explained in depth, with citations, in
+[`reference/shell-standards.md`](../../reference/shell-standards.md); the rules
+that carry a ShellCheck code also have a runnable good/bad pair in
+[`examples/standards/`](../../examples/standards/).
 
 ## Rules at a glance
 
@@ -31,9 +32,11 @@ with citations, in [`reference/shell-standards.md`](../../reference/shell-standa
 
 - **Writing a script?** Start from rule 1, quote everything (rule 2), and reach
   for arrays (rule 5) the moment you have a list of arguments.
-- **Reviewing a script?** Run `shellcheck --severity=warning`; the SC codes above
-  map directly to these rules. This repo's own config (`.shellcheckrc`) turns on
-  `enable=all` for the strictest local feedback.
+- **Reviewing a script?** Run `shellcheck` at its **default** severity (this
+  repo's `.shellcheckrc` sets `enable=all`); the SC codes above map directly to
+  these rules. CI lints at `--severity=warning`, which catches the
+  higher-severity codes but filters out `SC2086`/`SC2162` (info) and `SC2292`
+  (style) — so review locally at the default level to see them all.
 - **Formatting?** `shfmt` (configured in `.editorconfig`) enforces layout — it
   even rewrites legacy backticks to `$(...)` for you, which is why there is no
   runnable backticks example here.

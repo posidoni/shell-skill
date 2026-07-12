@@ -41,7 +41,7 @@ entrypoint. The important ones:
 
 ```sh
 task fmt        # format all shell scripts in place (shfmt -w)
-task ci         # everything CI runs: fmt-check, lint, examples, nushell, demo, test
+task ci         # everything CI runs: fmt-check, lint, examples, nushell, nushell-demo, test
 task hooks      # run every pre-commit hook across the repo
 ```
 

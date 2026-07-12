@@ -27,6 +27,14 @@ paired files side by side.
 | `05-prefer-double-bracket` | `[[ ]]` survives an empty value | `[ ]` breaks on it | `SC2292` |
 | `06-return-not-exit` | helper `return`s | helper `exit`s the caller | none |
 
+## `.env.example`
+
+`.env.example` in this directory is a tracked template for environment files. The
+convention it teaches: keep real secrets in a git-ignored `.env` (or a secret
+manager), commit only a blank-valued example, and read values in scripts with a
+safe default — `port="${APP_PORT:-8080}"` — so `set -u` does not abort on an
+unset variable.
+
 ## Run them
 
 ```sh
