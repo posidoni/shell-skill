@@ -132,7 +132,9 @@ Install the Claude Code plugin:
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the toolchain, the example contract,
 and the PR checklist. Please also read the [Code of Conduct](CODE_OF_CONDUCT.md).
-Security reports: [SECURITY.md](SECURITY.md).
+Security reports: [SECURITY.md](SECURITY.md). Curious how this was actually
+built — the research process, the enforcement discipline? See
+[ENGINEERING.md](ENGINEERING.md).
 
 ## References
 
