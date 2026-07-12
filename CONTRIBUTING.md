@@ -28,6 +28,11 @@ brew install shellcheck shfmt nushell bats-core go-task lefthook
 [`tools/ci-install-linux.sh`](tools/ci-install-linux.sh); run it or copy the
 commands.
 
+CI runs the shell suite on **both Linux and macOS**
+([`tools/ci-install-macos.sh`](tools/ci-install-macos.sh)) — Bash, shfmt, and
+ShellCheck genuinely behave differently across the two (see
+[`reference/bash.md`](reference/bash.md)), so both are checked, not just one.
+
 Then install the git hooks once:
 
 ```sh

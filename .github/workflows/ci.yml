@@ -40,6 +40,22 @@ jobs:
       - name: Behavioural tests (bats)
         run: task test
 
+  shell-macos:
+    name: shell-macos (shellcheck + shfmt + bats on macOS)
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - name: Install toolchain (Homebrew)
+        run: ./tools/ci-install-macos.sh
+      - name: Format check (shfmt)
+        run: task fmt-check
+      - name: Lint (shellcheck)
+        run: task lint
+      - name: Example contract (bad examples)
+        run: task examples
+      - name: Behavioural tests (bats)
+        run: task test
+
   nushell:
     name: nushell (nu --ide-check + startup demo)
     runs-on: ubuntu-24.04

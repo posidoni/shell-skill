@@ -36,7 +36,8 @@ not by luck.
 - **Enforced, not asserted.** The example contract is checked in CI, so the
   guidance cannot rot without breaking the build.
 - **Portable by default.** Guidance calls out macOS Bash 3.2 and BSD-vs-GNU
-  differences instead of assuming Linux + GNU coreutils.
+  differences instead of assuming Linux + GNU coreutils — and CI runs the
+  suite on both Linux and macOS, so that claim is checked, not just asserted.
 - **Judgment, not just syntax.** It also covers
   [when *not* to use shell](reference/meta-guidance.md) — reach for Python or Go
   before a 300-line Bash script.
