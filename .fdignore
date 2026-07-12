@@ -1,0 +1,9 @@
+# fd-specific ignore (gitignore syntax). fd already honors .gitignore and hides
+# dot-paths unless `-H`; this file keeps broad `fd` traversals bounded to the
+# content that matters and away from VCS and tooling state.
+.git/
+.pre-commit-cache/
+.bats-tmp/
+
+# Legal / changelog boilerplate is rarely a useful `fd` hit.
+LICENSE

@@ -1,0 +1,18 @@
+# ShellCheck configuration — https://www.shellcheck.net/wiki/
+#
+# This repository teaches strict, safe shell, so we opt into every optional
+# check. CI enforces `--severity=warning`; running `shellcheck` locally with its
+# default (`--severity=style`) additionally surfaces style suggestions such as
+# SC2250 (brace all expansions) and SC2248 (quote even "safe" variables).
+#
+# Rationale for each relaxation is required, inline, right here — never with a
+# bare `# shellcheck disable=...` scattered through the code.
+
+# Turn on all optional checks (SC2248, SC2250, SC2312, SC2310/SC2311, ...).
+enable=all
+
+# Do not read sourced files from disk during analysis: results stay
+# deterministic and ShellCheck never follows a path that only exists at runtime.
+# Where a sourced file *should* be analyzed, add an inline `# shellcheck
+# source=path/to/file` (or `source=/dev/null`) directive at the `source` site.
+external-sources=false

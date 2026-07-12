@@ -1,0 +1,38 @@
+# EditorConfig — https://editorconfig.org
+#
+# shfmt (v3+) reads its formatting options from this file, so `shfmt` and your
+# editor stay in sync. The shell settings below mirror the Google Shell Style
+# Guide: 2-space indent, and shfmt-specific keys for the rest.
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# Shell scripts. The last three keys are shfmt extensions:
+#   binary_next_line   -> break before `&&` / `||` when wrapping lines
+#   switch_case_indent -> indent the bodies of `case` branches
+#   space_redirects    -> `> file`, not `>file`
+[*.{sh,bash}]
+indent_style = space
+indent_size = 2
+binary_next_line = true
+switch_case_indent = true
+space_redirects = true
+
+# Nushell.
+[*.nu]
+indent_style = space
+indent_size = 2
+
+# Markdown: two trailing spaces are a hard line break, so keep them.
+[*.md]
+trim_trailing_whitespace = false
+
+# Makefiles require real tabs.
+[Makefile]
+indent_style = tab

@@ -1,0 +1,59 @@
+# pre-commit hooks — https://pre-commit.com
+#
+# These mirror CI exactly. The shell/nushell hooks are `language: system`, so
+# they invoke the shellcheck / shfmt / nu / bats you already have installed
+# (see CONTRIBUTING.md) rather than pinning a second copy. Install with:
+#
+#     pre-commit install
+#
+minimum_pre_commit_version: "3.5.0"
+
+repos:
+  - repo: local
+    hooks:
+      - id: shfmt
+        name: shfmt (format check)
+        description: All shell scripts must be shfmt-formatted (config in .editorconfig).
+        language: system
+        entry: shfmt -d
+        types: [shell]
+        # `.bats` files are not valid Bash syntax; shfmt cannot parse them.
+        exclude: '\.bats$'
+
+      - id: shellcheck
+        name: shellcheck (non-bad scripts)
+        description: ShellCheck every script except intentional *.bad.sh examples.
+        language: system
+        entry: shellcheck --severity=warning
+        types: [shell]
+        exclude: '(\.bad\.sh|\.bats)$'
+
+      - id: check-bad-examples
+        name: good-vs-bad example contract
+        description: Each *.bad.sh must document (and, if applicable, trigger) its ShellCheck codes.
+        language: system
+        entry: tools/check-bad-examples.sh
+        pass_filenames: false
+        files: '\.bad\.sh$'
+
+      - id: nushell-ide-check
+        name: nushell static check (nu --ide-check)
+        description: Every *.nu must parse and type-check cleanly.
+        language: system
+        entry: tools/check-nushell.sh
+        pass_filenames: false
+        files: '\.nu$'
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        exclude: '\.md$' # Markdown hard line breaks use two trailing spaces.
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+      - id: check-case-conflict

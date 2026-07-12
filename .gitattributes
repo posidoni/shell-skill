@@ -1,0 +1,10 @@
+# Normalize line endings so shfmt/ShellCheck behave identically on every OS.
+# Shell and Nushell scripts are always LF, never CRLF.
+* text=auto eol=lf
+*.sh   text eol=lf
+*.bash text eol=lf
+*.bats text eol=lf
+*.nu   text eol=lf
+
+# Treat these as documentation for GitHub's language stats / diff display.
+*.md linguist-documentation

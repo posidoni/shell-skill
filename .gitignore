@@ -1,0 +1,29 @@
+# --- OS / editor cruft ---------------------------------------------------
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+.idea/
+.vscode/
+*.code-workspace
+
+# --- Tooling caches ------------------------------------------------------
+# pre-commit's per-hook environments (we use system hooks, but be safe).
+.pre-commit-cache/
+# bats temporary run directories, if ever configured to persist.
+.bats-tmp/
+
+# --- Local, per-developer environment ------------------------------------
+# Secrets and machine-local settings must never be committed. The tracked
+# template is examples/standards, not a real .env.
+.env
+.env.*
+!.env.example
+*.local
+
+# --- Credentials / keys (belt and suspenders; nothing here should exist) --
+*.pem
+*.key
+id_rsa
+id_ed25519

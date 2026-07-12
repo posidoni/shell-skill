@@ -1,0 +1,11 @@
+# ripgrep-specific ignore (gitignore syntax). ripgrep already skips paths in
+# .gitignore and .git/; this file removes *content* noise from `rg` searches so
+# a query for a shell pattern isn't drowned in legal or lockfile boilerplate.
+#
+# Precedence: .rgignore and .ignore override .gitignore for ripgrep. Nothing
+# here is git-ignored — these files ARE tracked; they are only hidden from `rg`.
+LICENSE
+CHANGELOG.md
+
+# Keep broad `rg` sweeps bounded (repo convention: never traverse VCS/data dirs).
+.git/
