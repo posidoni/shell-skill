@@ -4,9 +4,10 @@
 # directory produces no phantom filename.
 set -euo pipefail
 
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+
 main() (
-  tmp=$(mktemp -d)
-  trap 'rm -rf "$tmp"' EXIT
   cd "$tmp"
 
   shopt -s nullglob
