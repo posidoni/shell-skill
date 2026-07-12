@@ -1,0 +1,23 @@
+{
+  "name": "shell-skill",
+  "version": "0.1.0",
+  "description": "Skills for writing safe, correct shell — Bash, Zsh, POSIX sh, and Nushell.",
+  "author": {
+    "name": "Mikhail Kuznetsov",
+    "url": "https://github.com/posidoni"
+  },
+  "repository": "https://github.com/posidoni/shell-skill",
+  "homepage": "https://github.com/posidoni/shell-skill#readme",
+  "license": "MIT",
+  "keywords": [
+    "shell",
+    "bash",
+    "zsh",
+    "nushell",
+    "posix",
+    "shellcheck",
+    "shfmt",
+    "safety",
+    "agent-skills"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "shell-skill",
+  "owner": {
+    "name": "Mikhail Kuznetsov (@posidoni)"
+  },
+  "plugins": [
+    {
+      "name": "shell-skill",
+      "source": "./",
+      "description": "Skills for writing safe, correct shell — Bash, Zsh, POSIX sh, and Nushell.",
+      "category": "development",
+      "version": "0.1.0"
+    }
+  ]
+}
