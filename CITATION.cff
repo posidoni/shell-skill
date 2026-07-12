@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: shell-skill
+message: >-
+  If you use this project, please cite it using the metadata below.
+type: software
+authors:
+  - family-names: Kuznetsov
+    given-names: Mikhail
+    alias: posidoni
+repository-code: "https://github.com/posidoni/shell-skill"
+url: "https://github.com/posidoni/shell-skill"
+abstract: >-
+  A cited, test-enforced guide to writing safe, correct shell (Bash, Zsh, POSIX
+  sh, and Nushell) for humans and AI coding agents, packaged as Claude Code
+  skills.
+keywords:
+  - shell
+  - bash
+  - zsh
+  - nushell
+  - shellcheck
+  - agent-skills
+license: MIT
+version: 0.1.0
+date-released: "2026-07-13"
