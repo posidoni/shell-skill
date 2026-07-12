@@ -48,6 +48,7 @@ not by luck.
 | Skill | Covers | Reference | Examples |
 |-------|--------|-----------|----------|
 | [shell-standards](skills/shell-standards/SKILL.md) | strict mode, quoting, `[[ ]]`, arrays, traps, error handling | [reference](reference/shell-standards.md) | [examples](examples/standards/) |
+| [shebang](skills/shebang/SKILL.md) | `#!/usr/bin/env`, `env -S` flags, absolute paths, dialect | [reference](reference/shebang.md) | [examples](examples/shebang/) |
 | [bash](skills/bash/SKILL.md) | error handling, macOS/BSD portability, arrays, temp files | [reference](reference/bash.md) | [examples](examples/bash/) |
 | [zsh](skills/zsh/SKILL.md) | word-splitting, 1-indexed arrays, `emulate`, globbing | [reference](reference/zsh.md) | prose |
 | [nushell](skills/nushell/SKILL.md) | structured data, config load order, parse-time `source` | [reference](reference/nushell.md) | [examples](examples/nushell/) |
