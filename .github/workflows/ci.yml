@@ -28,7 +28,7 @@ jobs:
       # Third-party and first-party actions are pinned to a full commit SHA
       # (with a human-readable version comment) per GitHub's security hardening
       # guidance: https://docs.github.com/actions/security-guides/security-hardening-for-github-actions
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - name: Install toolchain
         run: ./tools/ci-install-linux.sh
       - name: Format check (shfmt)
@@ -44,7 +44,7 @@ jobs:
     name: nushell (nu --ide-check + startup demo)
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - name: Install toolchain
         run: ./tools/ci-install-linux.sh
       - name: Static check (nu --ide-check)
@@ -56,7 +56,7 @@ jobs:
     name: lefthook (mirrors CI hooks)
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - name: Install toolchain
         run: ./tools/ci-install-linux.sh
       - name: Run hooks over all files
