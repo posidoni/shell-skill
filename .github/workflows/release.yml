@@ -1,0 +1,27 @@
+name: Release
+
+# Cut a GitHub release automatically when a v* tag is pushed.
+# Tag a release with:  git tag -a vX.Y.Z -m "..." && git push origin vX.Y.Z
+on:
+  push:
+    tags: ["v*"]
+
+# Least-privilege: only the permission needed to create a release.
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: create GitHub release
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - name: Create release from the tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$TAG" \
+            --title "shell-skill ${TAG#v}" \
+            --generate-notes \
+            --verify-tag
