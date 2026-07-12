@@ -151,9 +151,27 @@ Related projects and curated indexes of Agent Skills:
 [rohitg00/awesome-claude-code-toolkit](https://github.com/rohitg00/awesome-claude-code-toolkit),
 [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents).
 
-Standards cite the
-[Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)
-and [ShellCheck](https://www.shellcheck.net/wiki/).
+### Shell references and inspiration
+
+The guidance draws on — and is indebted to — these sources:
+
+- [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)
+  and the [ShellCheck wiki](https://www.shellcheck.net/wiki/) — the backbone of
+  the rules and codes.
+- [Greg's Wiki — BashFAQ & BashPitfalls](https://mywiki.wooledge.org/) — the
+  definitive catalogue of shell gotchas.
+- [dylanaraps/pure-bash-bible](https://github.com/dylanaraps/pure-bash-bible) —
+  pure-bash alternatives to external commands.
+- [anordal/shellharden](https://github.com/anordal/shellharden) — a safety
+  auto-corrector and its precise "what you don't need to quote" rules.
+- [koalaman/shellcheck](https://github.com/koalaman/shellcheck) — one page per
+  diagnostic; the model for machine-checkable rules.
+- [romkatv/zsh-bench](https://github.com/romkatv/zsh-bench) &
+  [Powerlevel10k](https://github.com/romkatv/powerlevel10k) — the zsh
+  no-subprocess performance discipline.
+- [The Nushell Book](https://www.nushell.sh/book/) — the Nushell chapters.
+- Shebang mechanics: [`execve(2)`](https://man7.org/linux/man-pages/man2/execve.2.html)
+  and the merged Linux doc fix by [@alurm](https://github.com/alurm).
 
 ## License
 
