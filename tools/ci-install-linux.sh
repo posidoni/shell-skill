@@ -7,6 +7,7 @@ set -euo pipefail
 
 shfmt_version="${SHFMT_VERSION:-v3.13.1}"
 nu_version="${NU_VERSION:-0.114.1}"
+task_version="${TASK_VERSION:-v3.52.0}"
 arch="x86_64"
 
 echo "::group::apt packages (shellcheck, bats)"
@@ -32,8 +33,19 @@ sudo install "${tmp}/nu" /usr/local/bin/nu
 rm -rf "${tmp}"
 echo "::endgroup::"
 
+echo "::group::task ${task_version}"
+tmp=$(mktemp -d)
+curl -fsSL \
+  "https://github.com/go-task/task/releases/download/${task_version}/task_linux_amd64.tar.gz" \
+  -o "${tmp}/task.tar.gz"
+tar -xzf "${tmp}/task.tar.gz" -C "${tmp}" task
+sudo install "${tmp}/task" /usr/local/bin/task
+rm -rf "${tmp}"
+echo "::endgroup::"
+
 echo "Installed toolchain:"
 shellcheck --version
 shfmt --version
 nu --version
 bats --version
+task --version

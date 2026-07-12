@@ -1,0 +1,71 @@
+# Taskfile — developer and CI entrypoints. Run `task` (or `task --list`) for the
+# menu. See https://taskfile.dev.
+#
+# Why Task instead of Make?
+#   - Plain YAML: no tab-vs-space recipe footgun, no `.PHONY` bookkeeping, no
+#     `$$` escaping.
+#   - One static Go binary that behaves identically on Linux and macOS — unlike
+#     GNU Make vs BSD Make, whose dialects diverge.
+#   - Self-documenting: every task has a `desc:` surfaced by `task --list`.
+#   - First-class up-to-date checks via `sources:`/`generates:` when you want
+#     them, without Make's implicit-rule machinery.
+# Install: https://taskfile.dev/installation/  (macOS: `brew install go-task`).
+version: "3"
+
+silent: true
+
+tasks:
+  default:
+    desc: List available tasks
+    cmds:
+      - task --list
+
+  fmt:
+    desc: Format all shell scripts in place (shfmt -w)
+    cmds:
+      - shfmt -w .
+
+  fmt-check:
+    desc: Check formatting; fails on any diff
+    cmds:
+      - ./tools/format-check.sh
+
+  lint:
+    desc: ShellCheck all non-bad shell scripts
+    cmds:
+      - ./tools/lint-shell.sh
+
+  examples:
+    desc: Verify the good-vs-bad example contract
+    cmds:
+      - ./tools/check-bad-examples.sh
+
+  nushell:
+    desc: Static-check all Nushell scripts (nu --ide-check)
+    cmds:
+      - ./tools/check-nushell.sh
+
+  nushell-demo:
+    desc: Run the Nushell startup-order bug/fix demonstration
+    cmds:
+      - ./tests/nushell-startup-demo.sh
+
+  test:
+    desc: Run the bats behavioural suite
+    cmds:
+      - bats tests
+
+  hooks:
+    desc: Run every pre-commit hook across the whole repo
+    cmds:
+      - pre-commit run --all-files
+
+  ci:
+    desc: Run everything CI runs
+    cmds:
+      - task: fmt-check
+      - task: lint
+      - task: examples
+      - task: nushell
+      - task: nushell-demo
+      - task: test

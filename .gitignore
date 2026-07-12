@@ -29,7 +29,8 @@ id_rsa
 id_ed25519
 
 # --- Agent working files (never part of the product) ---------------------
-# Ralph loop state and the loop's internal plan/progress notes. These drive
-# an iterative build session; they are scaffolding, not shippable content.
+# Per-developer Claude Code state: local permission overrides and Ralph loop
+# scaffolding. The shared, committed config (if any) lives in .claude/settings.json.
+.claude/settings.local.json
 .claude/ralph-loop.local.md
 .ralph/

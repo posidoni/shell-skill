@@ -32,7 +32,3 @@ indent_size = 2
 # Markdown: two trailing spaces are a hard line break, so keep them.
 [*.md]
 trim_trailing_whitespace = false
-
-# Makefiles require real tabs.
-[Makefile]
-indent_style = tab

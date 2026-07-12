@@ -17,6 +17,7 @@ concurrency:
 env:
   SHFMT_VERSION: v3.13.1
   NU_VERSION: "0.114.1"
+  TASK_VERSION: "v3.52.0"
 
 jobs:
   shell:
@@ -30,13 +31,13 @@ jobs:
       - name: Install toolchain
         run: ./tools/ci-install-linux.sh
       - name: Format check (shfmt)
-        run: make fmt-check
+        run: task fmt-check
       - name: Lint (shellcheck)
-        run: make lint
+        run: task lint
       - name: Example contract (bad examples)
-        run: make examples
+        run: task examples
       - name: Behavioural tests (bats)
-        run: make test
+        run: task test
 
   nushell:
     name: nushell (nu --ide-check + startup demo)
@@ -46,9 +47,9 @@ jobs:
       - name: Install toolchain
         run: ./tools/ci-install-linux.sh
       - name: Static check (nu --ide-check)
-        run: make nushell
+        run: task nushell
       - name: Startup-order demo (parse-time source bug + fix)
-        run: make nushell-demo
+        run: task nushell-demo
 
   pre-commit:
     name: pre-commit (mirrors CI)
