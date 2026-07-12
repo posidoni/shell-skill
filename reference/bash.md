@@ -53,6 +53,22 @@ fi
 
 See the runnable pairs in [`examples/bash/`](../examples/bash/).
 
+## Globbing and empty matches
+
+By default, a glob that matches nothing remains unchanged. In an empty
+directory, `for file in *.txt` therefore runs once with the literal string
+`*.txt`, even though no file exists.
+
+- Enable `nullglob` when no matches should produce zero words: `shopt -s
+  nullglob`. This is useful for loops and arrays that should simply stay empty.
+- Enable `failglob` when no matches should be an error instead. This is useful
+  when the missing input signals a broken assumption.
+
+Both options are Bash-specific and affect subsequent expansions in the current
+shell, so enable them deliberately and keep their scope narrow. See the Bash
+manual's [Filename Expansion](https://www.gnu.org/software/bash/manual/bash.html#Filename-Expansion)
+section and the runnable pair in [`examples/bash/`](../examples/bash/).
+
 ## Safe temp files
 
 Create with `mktemp`, remove with an `EXIT` trap set immediately afterward. Keep
