@@ -12,14 +12,14 @@ root=$(git rev-parse --show-toplevel)
 cd "$root"
 
 if ! command -v nu > /dev/null 2>&1; then
-  echo "check-nushell: 'nu' not found on PATH" >&2
+  printf '%s\n' "check-nushell: 'nu' not found on PATH" >&2
   exit 127
 fi
 
 mapfile -t files < <(git ls-files -co --exclude-standard -- '*.nu')
 
 if [[ ${#files[@]} -eq 0 ]]; then
-  echo "check-nushell: no *.nu files found"
+  printf '%s\n' "check-nushell: no *.nu files found"
   exit 0
 fi
 
@@ -27,11 +27,11 @@ fail=0
 for f in "${files[@]}"; do
   out=$(nu --ide-check 100 "$f" 2>&1 || true)
   if grep -q '"severity":"Error"' <<< "$out"; then
-    echo "FAIL $f:" >&2
+    printf '%s\n' "FAIL $f:" >&2
     printf '%s\n' "$out" >&2
     fail=1
   else
-    echo "OK   $f"
+    printf '%s\n' "OK   $f"
   fi
 done
 

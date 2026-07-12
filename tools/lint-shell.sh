@@ -14,10 +14,10 @@ mapfile -t files < <(
 )
 
 if [[ ${#files[@]} -eq 0 ]]; then
-  echo "lint-shell: no shell files found"
+  printf '%s\n' "lint-shell: no shell files found"
   exit 0
 fi
 
-echo "lint-shell: shellcheck --severity=warning on ${#files[@]} files"
+printf '%s\n' "lint-shell: shellcheck --severity=warning on ${#files[@]} files"
 shellcheck --severity=warning -- "${files[@]}"
-echo "lint-shell: OK"
+printf '%s\n' "lint-shell: OK"

@@ -18,8 +18,8 @@ setup() {
     [ -n "$script" ] || continue
     run bash "$REPO_ROOT/$script"
     if [ "$status" -ne 0 ]; then
-      echo "FAILED (exit $status): $script"
-      echo "$output"
+      printf '%s\n' "FAILED (exit $status): $script"
+      printf '%s\n' "$output"
       failures=$((failures + 1))
     fi
   done < <(git -C "$REPO_ROOT" ls-files -co --exclude-standard -- '*.good.sh')

@@ -19,7 +19,7 @@ cd "$root"
 mapfile -t bad < <(git ls-files -co --exclude-standard -- '*.bad.sh')
 
 if [[ ${#bad[@]} -eq 0 ]]; then
-  echo "check-bad-examples: no *.bad.sh files found"
+  printf '%s\n' "check-bad-examples: no *.bad.sh files found"
   exit 0
 fi
 
@@ -27,7 +27,7 @@ fail=0
 for f in "${bad[@]}"; do
   directive=$(grep -m1 -E '^# expect-shellcheck:' "$f" || true)
   if [[ -z "$directive" ]]; then
-    echo "FAIL $f: missing '# expect-shellcheck:' directive" >&2
+    printf '%s\n' "FAIL $f: missing '# expect-shellcheck:' directive" >&2
     fail=1
     continue
   fi
@@ -40,12 +40,12 @@ for f in "${bad[@]}"; do
   out=$(shellcheck --severity=style --format=gcc -- "$f" 2>&1 || true)
 
   if [[ "${want[0]:-}" == "none" ]]; then
-    echo "OK   $f: documented style-guide-only pitfall (no ShellCheck code)"
+    printf '%s\n' "OK   $f: documented style-guide-only pitfall (no ShellCheck code)"
     continue
   fi
 
   if [[ -z "$out" ]]; then
-    echo "FAIL $f: expected ShellCheck to report ${want[*]}, but output was clean" >&2
+    printf '%s\n' "FAIL $f: expected ShellCheck to report ${want[*]}, but output was clean" >&2
     fail=1
     continue
   fi
@@ -56,13 +56,13 @@ for f in "${bad[@]}"; do
   done
 
   if [[ ${#missing[@]} -gt 0 ]]; then
-    echo "FAIL $f: ShellCheck did not report ${missing[*]}" >&2
+    printf '%s\n' "FAIL $f: ShellCheck did not report ${missing[*]}" >&2
     printf '%s\n' "$out" >&2
     fail=1
     continue
   fi
 
-  echo "OK   $f: ShellCheck reported ${want[*]}"
+  printf '%s\n' "OK   $f: ShellCheck reported ${want[*]}"
 done
 
 exit "$fail"

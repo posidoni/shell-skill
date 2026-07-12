@@ -11,19 +11,19 @@ task_version="${TASK_VERSION:-v3.52.0}"
 lefthook_version="${LEFTHOOK_VERSION:-v2.1.10}"
 arch="x86_64"
 
-echo "::group::apt packages (shellcheck, bats)"
+printf '%s\n' "::group::apt packages (shellcheck, bats)"
 sudo apt-get update -qq
 sudo apt-get install -y --no-install-recommends shellcheck bats
-echo "::endgroup::"
+printf '%s\n' "::endgroup::"
 
-echo "::group::shfmt ${shfmt_version}"
+printf '%s\n' "::group::shfmt ${shfmt_version}"
 sudo curl -fsSL \
   "https://github.com/mvdan/sh/releases/download/${shfmt_version}/shfmt_${shfmt_version}_linux_amd64" \
   -o /usr/local/bin/shfmt
 sudo chmod +x /usr/local/bin/shfmt
-echo "::endgroup::"
+printf '%s\n' "::endgroup::"
 
-echo "::group::nushell ${nu_version}"
+printf '%s\n' "::group::nushell ${nu_version}"
 tarball="nu-${nu_version}-${arch}-unknown-linux-gnu.tar.gz"
 tmp=$(mktemp -d)
 curl -fsSL \
@@ -32,9 +32,9 @@ curl -fsSL \
 tar -xzf "${tmp}/nu.tar.gz" -C "${tmp}" --strip-components=1
 sudo install "${tmp}/nu" /usr/local/bin/nu
 rm -rf "${tmp}"
-echo "::endgroup::"
+printf '%s\n' "::endgroup::"
 
-echo "::group::task ${task_version}"
+printf '%s\n' "::group::task ${task_version}"
 tmp=$(mktemp -d)
 curl -fsSL \
   "https://github.com/go-task/task/releases/download/${task_version}/task_linux_amd64.tar.gz" \
@@ -42,17 +42,17 @@ curl -fsSL \
 tar -xzf "${tmp}/task.tar.gz" -C "${tmp}" task
 sudo install "${tmp}/task" /usr/local/bin/task
 rm -rf "${tmp}"
-echo "::endgroup::"
+printf '%s\n' "::endgroup::"
 
-echo "::group::lefthook ${lefthook_version}"
+printf '%s\n' "::group::lefthook ${lefthook_version}"
 # Release asset names use the version without the leading 'v'.
 sudo curl -fsSL \
   "https://github.com/evilmartians/lefthook/releases/download/${lefthook_version}/lefthook_${lefthook_version#v}_Linux_x86_64" \
   -o /usr/local/bin/lefthook
 sudo chmod +x /usr/local/bin/lefthook
-echo "::endgroup::"
+printf '%s\n' "::endgroup::"
 
-echo "Installed toolchain:"
+printf '%s\n' "Installed toolchain:"
 shellcheck --version
 shfmt --version
 nu --version

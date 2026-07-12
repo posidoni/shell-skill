@@ -16,7 +16,7 @@
 set -euo pipefail
 
 if ! command -v nu > /dev/null 2>&1; then
-  echo "nushell-startup-demo: 'nu' not found on PATH" >&2
+  printf '%s\n' "nushell-startup-demo: 'nu' not found on PATH" >&2
   exit 127
 fi
 
@@ -45,7 +45,7 @@ run_nu() {
   set -e
 }
 
-echo "== CASE 1: the bug — config.nu sources a file that does not exist yet =="
+printf '%s\n' "== CASE 1: the bug — config.nu sources a file that does not exist yet =="
 printf '%s\n' '$env.DEMO = "env-loaded"' > "$cfg/env.nu"
 printf '%s\n' 'source generated.nu' > "$cfg/config.nu"
 run_nu 'print "startup ok"'
@@ -56,8 +56,8 @@ else
   printf '%s\n' "$nu_out"
 fi
 
-echo
-echo "== CASE 2: an 'if (path exists)' guard does NOT help (source is parse-time) =="
+printf '\n'
+printf '%s\n' "== CASE 2: an 'if (path exists)' guard does NOT help (source is parse-time) =="
 printf '%s\n' 'if ("generated.nu" | path exists) { source generated.nu }' > "$cfg/config.nu"
 run_nu 'print "startup ok"'
 if [[ "$nu_rc" -ne 0 ]] && grep -q 'sourced_file_not_found' <<< "$nu_out"; then
@@ -67,8 +67,8 @@ else
   printf '%s\n' "$nu_out"
 fi
 
-echo
-echo "== CASE 3: the fix — env.nu generates the file before config.nu is parsed =="
+printf '\n'
+printf '%s\n' "== CASE 3: the fix — env.nu generates the file before config.nu is parsed =="
 cat > "$cfg/env.nu" << 'NU'
 # env.nu is evaluated in full before config.nu is parsed. Generate the file that
 # config.nu will `source` with a parse-time literal path.
@@ -86,10 +86,10 @@ else
   printf '%s\n' "$nu_out"
 fi
 
-echo
+printf '\n'
 if [[ "$fails" -eq 0 ]]; then
-  echo "nushell-startup-demo: all cases passed"
+  printf '%s\n' "nushell-startup-demo: all cases passed"
   exit 0
 fi
-echo "nushell-startup-demo: $fails case(s) failed" >&2
+printf '%s\n' "nushell-startup-demo: $fails case(s) failed" >&2
 exit 1

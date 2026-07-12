@@ -12,7 +12,7 @@ cd "$root"
 mapfile -t files < <(git ls-files -co --exclude-standard -- '*.sh' '*.bash')
 
 if [[ ${#files[@]} -eq 0 ]]; then
-  echo "format-check: no shell files found"
+  printf '%s\n' "format-check: no shell files found"
   exit 0
 fi
 
@@ -20,10 +20,10 @@ fi
 unformatted=$(shfmt -l -- "${files[@]}")
 
 if [[ -n "$unformatted" ]]; then
-  echo "format-check: FAILED — these files are not shfmt-formatted:" >&2
+  printf '%s\n' "format-check: FAILED — these files are not shfmt-formatted:" >&2
   printf '  %s\n' "$unformatted" >&2
-  echo "Run 'make fmt' (shfmt -w .) to fix." >&2
+  printf '%s\n' "Run 'task fmt' to fix." >&2
   exit 1
 fi
 
-echo "format-check: OK (${#files[@]} files)"
+printf '%s\n' "format-check: OK (${#files[@]} files)"
