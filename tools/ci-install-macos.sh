@@ -11,10 +11,16 @@
 set -euo pipefail
 
 printf '%s\n' "::group::brew packages"
-brew install shellcheck shfmt nushell bats-core go-task lefthook
+# Include `bash` itself: macOS ships /bin/bash 3.2 (no `mapfile`, a Bash 4+
+# builtin — used by this repo's own tools/*.sh), and Homebrew's bin directory
+# is ahead of /bin on the runner's PATH, so `#!/usr/bin/env bash` then
+# resolves to a current bash instead of the frozen system one.
+brew install bash shellcheck shfmt nushell bats-core go-task lefthook
 printf '%s\n' "::endgroup::"
 
 printf '%s\n' "Installed toolchain:"
+bash --version | head -1
+command -v bash
 shellcheck --version
 shfmt --version
 nu --version
