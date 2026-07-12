@@ -27,3 +27,9 @@ Thumbs.db
 *.key
 id_rsa
 id_ed25519
+
+# --- Agent working files (never part of the product) ---------------------
+# Ralph loop state and the loop's internal plan/progress notes. These drive
+# an iterative build session; they are scaffolding, not shippable content.
+.claude/ralph-loop.local.md
+.ralph/
