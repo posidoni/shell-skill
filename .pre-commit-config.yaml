@@ -54,6 +54,7 @@ repos:
         args: [--fix=lf]
       - id: check-merge-conflict
       - id: check-yaml
+      - id: check-json # validates .claude-plugin/*.json
       - id: check-executables-have-shebangs
       - id: check-shebang-scripts-are-executable
       - id: check-case-conflict
