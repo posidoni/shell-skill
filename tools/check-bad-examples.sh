@@ -34,8 +34,10 @@ for f in "${bad[@]}"; do
 
   read -r -a want <<< "${directive#*expect-shellcheck:}"
 
-  # Capture ShellCheck output regardless of its exit status.
-  out=$(shellcheck --severity=warning --format=gcc -- "$f" 2>&1 || true)
+  # Capture ShellCheck output regardless of its exit status. Use the lowest
+  # severity (style) so info/style codes such as SC2086 (unquoted) and SC2006
+  # (backticks) are reported and can be asserted against.
+  out=$(shellcheck --severity=style --format=gcc -- "$f" 2>&1 || true)
 
   if [[ "${want[0]:-}" == "none" ]]; then
     echo "OK   $f: documented style-guide-only pitfall (no ShellCheck code)"
