@@ -29,6 +29,7 @@ paired files side by side.
 | `07-printf-not-echo` | `printf '%s\n' "$x"` | `echo` escapes + var-in-format | `SC2028`/`SC2059` |
 | `08-brace-expansions` | `${base}_2026` | `$base_2026` (a different var) | `SC2250` |
 | `09-no-parse-ls` | glob `"$dir"/*.txt` | `$(ls *.txt)` | `SC2045` |
+| `10-parameter-expansion-not-sed` | `${path##*/}` strips in-process | `echo ... \| sed ...` forks twice | `SC2001` |
 
 ## `.env.example`
 
