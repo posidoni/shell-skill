@@ -27,6 +27,10 @@ that carry a ShellCheck code also have a runnable good/bad pair in
 | 6 | `[[ ... ]]`, not `[ ... ]` | `[[ ]]` doesn't split or glob its operands | `SC2292` |
 | 7 | `return` from helpers, `exit` only in `main` | `exit` kills the caller's shell when sourced | style guide |
 | 8 | `trap '...' EXIT` for cleanup | Releases temp files on every exit path | style guide |
+| 9 | `printf`, not `echo` | Portable escapes; keep data out of the format | `SC2028`/`SC2059` |
+| 10 | Brace expansions: `${var}` | Disambiguates `${v}_x`, arrays, defaults | `SC2250` |
+| 11 | `readonly` constants; `command -v` not `which` | Immutability; portable existence check | style guide |
+| 12 | Never parse `ls`; use a glob | Breaks on odd filenames | `SC2045` |
 
 ## How to use
 

@@ -26,6 +26,9 @@ paired files side by side.
 | `04-arrays-not-strings` | arrays hold spaced elements | a string cannot | `SC2206` |
 | `05-prefer-double-bracket` | `[[ ]]` survives an empty value | `[ ]` breaks on it | `SC2292` |
 | `06-return-not-exit` | helper `return`s | helper `exit`s the caller | none |
+| `07-printf-not-echo` | `printf '%s\n' "$x"` | `echo` escapes + var-in-format | `SC2028`/`SC2059` |
+| `08-brace-expansions` | `${base}_2026` | `$base_2026` (a different var) | `SC2250` |
+| `09-no-parse-ls` | glob `"$dir"/*.txt` | `$(ls *.txt)` | `SC2045` |
 
 ## `.env.example`
 

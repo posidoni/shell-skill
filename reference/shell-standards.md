@@ -212,6 +212,91 @@ Read files with `mapfile`/`read`, transform strings with parameter expansion
 (`${var#...}`, `${var/...}`, `${var:-...}`), and reserve external tools for work
 the shell genuinely cannot do.
 
+### 12. Print with `printf`, not `echo` — `SC2028`/`SC2059`
+
+`echo`'s handling of `-e`, `-n`, and backslashes varies across sh/bash/zsh/dash
+and with the `xpg_echo` option, so its output is not portable. `printf` is
+predictable everywhere (and is both a Bash builtin and `/usr/bin/printf`). Keep
+data out of the format string.
+
+```bash
+# bad  — SC2028: escapes may print literally; SC2059: $msg is used as a format
+echo "Name:\t$name"
+printf "$msg\n"
+
+# good
+printf 'Name:\t%s\n' "$name"
+printf '%s\n' "$msg"
+```
+
+POSIX itself recommends `printf` over `echo`. See ShellCheck
+[SC2028](https://www.shellcheck.net/wiki/SC2028) and
+[SC2059](https://www.shellcheck.net/wiki/SC2059).
+
+### 13. Brace your expansions: `${var}` — `SC2250`
+
+Braces are **required** for `${var}_suffix`, `${arr[@]}`, `${var:-default}`, and
+multi-digit positionals (`${10}`). Beyond that, always-bracing is a defensible
+house style (this repo enables it via `SC2250` under `enable=all`) because it
+removes the "is the next character part of the name?" question. The Google Shell
+Style Guide ranks **quoting first**, then prefers `"${var}"` over `"$var"`, and
+exempts single-character specials (`$1`, `$?`, `$$`).
+
+```bash
+# bad  — $partial_version is a different (unset) variable
+url="host/$partial_version/x"
+# good
+url="host/${partial}_version/x"
+```
+
+### 14. Make constants `readonly`
+
+Mark values that must not change (and environment-derived config) `readonly` (or
+`declare -r`), so an accidental reassignment fails loudly. Google Shell Style
+Guide, *"Constants."*
+
+```bash
+readonly MAX_RETRIES=5
+```
+
+### 15. Check commands with `command -v`, not `which`
+
+`which` is an external program with non-portable output and an unreliable exit
+status; `command -v` is POSIX and built in.
+([BashFAQ/081](https://mywiki.wooledge.org/BashFAQ/081))
+
+```bash
+command -v jq > /dev/null || { printf 'jq is required\n' >&2; exit 1; }
+```
+
+### 16. Never parse `ls` — glob or use `find -print0` — `SC2045`/`SC2012`
+
+`ls` output is for humans; parsing it breaks on spaces, newlines, and control
+characters in filenames. Use a glob, or `find … -print0` with
+`mapfile -d ''`. (Iterating `ls` triggers `SC2045`; using `ls` where `find`
+belongs triggers `SC2012`.)
+([ParsingLs](https://mywiki.wooledge.org/ParsingLs))
+
+```bash
+# bad  — SC2045
+for f in $(ls *.txt); do ...; done
+# good
+for f in ./*.txt; do ...; done
+```
+
+### 17. Fail fast on a required variable with `${var:?message}`
+
+`${VAR:?msg}` aborts with `msg` on stderr if `VAR` is unset or empty — a concise
+companion to `set -u`.
+
+```bash
+: "${API_TOKEN:?set API_TOKEN in the environment}"
+```
+
+> Strict-mode addendum (rule 1): add `set -E` (`errtrace`) when you use a
+> `trap … ERR`, or the trap will not fire inside functions, subshells, or
+> command substitutions.
+
 ## Portability note
 
 These rules target **Bash** (`#!/usr/bin/env bash`), not POSIX `sh`. `[[ ]]`,
