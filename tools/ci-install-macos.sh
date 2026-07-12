@@ -19,7 +19,7 @@ brew install bash shellcheck shfmt nushell bats-core go-task lefthook
 printf '%s\n' "::endgroup::"
 
 printf '%s\n' "Installed toolchain:"
-bash --version | head -1
+bash --version | head -n 1
 command -v bash
 shellcheck --version
 shfmt --version
