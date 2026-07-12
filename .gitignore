@@ -9,8 +9,8 @@ Thumbs.db
 *.code-workspace
 
 # --- Tooling caches ------------------------------------------------------
-# pre-commit's per-hook environments (we use system hooks, but be safe).
-.pre-commit-cache/
+# Lefthook per-developer local overrides (not committed).
+lefthook-local.yml
 # bats temporary run directories, if ever configured to persist.
 .bats-tmp/
 

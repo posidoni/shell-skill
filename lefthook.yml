@@ -1,0 +1,72 @@
+# lefthook.yml — Git hooks via Lefthook (https://lefthook.dev).
+#
+# A single static Go binary, no Python runtime — consistent with this repo's
+# toolchain (Task, shfmt, and Nushell are all pinned static binaries too).
+# These hooks mirror CI. Install once with `lefthook install`; this file is
+# re-read on every run, so edits need no reinstall. Run everything with
+# `task hooks` (which calls `lefthook run pre-commit --all-files`).
+min_version: 2.1.10
+
+pre-commit:
+  parallel: true
+  commands:
+    # shfmt format check. `-d` prints a diff and exits non-zero on any change.
+    # shfmt reads its options from .editorconfig. `.bats` can't match *.{sh,bash}.
+    shfmt:
+      glob: "*.{sh,bash}"
+      run: shfmt -d {staged_files}
+
+    # ShellCheck every script except the intentional *.bad.sh anti-patterns.
+    shellcheck:
+      glob: "*.{sh,bash}"
+      exclude:
+        - "*.bad.sh"
+      run: shellcheck --severity=warning {staged_files}
+
+    # The good-vs-bad example contract. The script self-scans via `git ls-files`,
+    # so the glob is only a gate: run when a *.bad.sh is staged, skip otherwise.
+    bad-examples:
+      glob: "*.bad.sh"
+      run: ./tools/check-bad-examples.sh
+
+    # Nushell static check (same gate-only pattern; the script self-scans).
+    nushell:
+      glob: "*.nu"
+      run: ./tools/check-nushell.sh
+
+    # JSON validity (replaces pre-commit's check-json), via nu — already required.
+    json-valid:
+      glob: "*.json"
+      run: |
+        for f in {staged_files}; do
+          nu -c "open --raw '$f' | from json | ignore" ||
+            { echo "invalid JSON: $f" >&2; exit 1; }
+        done
+
+    # Trailing whitespace and final newline (fail-only, no mutation; portable).
+    # Markdown is excluded — it uses two trailing spaces for hard line breaks.
+    whitespace:
+      glob: "*.{sh,bash,nu,json,yml,yaml}"
+      run: |
+        status=0
+        for f in {staged_files}; do
+          if grep -nE ' +$' "$f"; then
+            echo "trailing whitespace: $f" >&2
+            status=1
+          fi
+          if [ -s "$f" ] && [ -n "$(tail -c1 "$f")" ]; then
+            echo "missing final newline: $f" >&2
+            status=1
+          fi
+        done
+        exit "$status"
+
+    # Merge-conflict markers (replaces pre-commit's check-merge-conflict).
+    # The trailing space matches real markers, not markdown "=======" rules;
+    # /dev/null guarantees grep always has a file operand.
+    merge-conflict:
+      run: |
+        if grep -HnE '^(<<<<<<<|>>>>>>>) ' {staged_files} /dev/null; then
+          echo "merge conflict markers found (above)" >&2
+          exit 1
+        fi

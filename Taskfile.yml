@@ -56,9 +56,9 @@ tasks:
       - bats tests
 
   hooks:
-    desc: Run every pre-commit hook across the whole repo
+    desc: Run every git hook across the whole repo (lefthook)
     cmds:
-      - pre-commit run --all-files
+      - lefthook run pre-commit --all-files
 
   ci:
     desc: Run everything CI runs

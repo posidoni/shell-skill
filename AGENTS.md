@@ -26,7 +26,7 @@ through cited rules, runnable good/bad examples, and loadable agent skills.
 task --list      # discover every entrypoint
 task fmt         # format shell scripts (shfmt -w)
 task ci          # fmt-check, lint, examples, nushell, nushell-demo, test
-task hooks       # pre-commit run --all-files
+task hooks       # lefthook run pre-commit --all-files
 ```
 
 ## The example contract

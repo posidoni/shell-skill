@@ -8,6 +8,7 @@ set -euo pipefail
 shfmt_version="${SHFMT_VERSION:-v3.13.1}"
 nu_version="${NU_VERSION:-0.114.1}"
 task_version="${TASK_VERSION:-v3.52.0}"
+lefthook_version="${LEFTHOOK_VERSION:-v2.1.10}"
 arch="x86_64"
 
 echo "::group::apt packages (shellcheck, bats)"
@@ -43,9 +44,18 @@ sudo install "${tmp}/task" /usr/local/bin/task
 rm -rf "${tmp}"
 echo "::endgroup::"
 
+echo "::group::lefthook ${lefthook_version}"
+# Release asset names use the version without the leading 'v'.
+sudo curl -fsSL \
+  "https://github.com/evilmartians/lefthook/releases/download/${lefthook_version}/lefthook_${lefthook_version#v}_Linux_x86_64" \
+  -o /usr/local/bin/lefthook
+sudo chmod +x /usr/local/bin/lefthook
+echo "::endgroup::"
+
 echo "Installed toolchain:"
 shellcheck --version
 shfmt --version
 nu --version
 bats --version
 task --version
+lefthook version

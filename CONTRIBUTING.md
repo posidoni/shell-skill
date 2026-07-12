@@ -16,12 +16,12 @@ You need six tools. They are the same ones CI uses.
 | [Nushell](https://www.nushell.sh/) (`nu`) | static-checking `*.nu` examples |
 | [bats](https://github.com/bats-core/bats-core) | behavioural tests |
 | [Task](https://taskfile.dev) | task runner (the project entrypoint) |
-| [pre-commit](https://pre-commit.com/) | git hooks that mirror CI |
+| [Lefthook](https://lefthook.dev) | git hooks that mirror CI (a single Go binary) |
 
 **macOS (Homebrew):**
 
 ```sh
-brew install shellcheck shfmt nushell bats-core go-task pre-commit
+brew install shellcheck shfmt nushell bats-core go-task lefthook
 ```
 
 **Linux:** the pinned versions CI installs are in
@@ -31,7 +31,7 @@ commands.
 Then install the git hooks once:
 
 ```sh
-pre-commit install
+lefthook install
 ```
 
 ## The task runner
@@ -42,7 +42,7 @@ entrypoint. The important ones:
 ```sh
 task fmt        # format all shell scripts in place (shfmt -w)
 task ci         # everything CI runs: fmt-check, lint, examples, nushell, nushell-demo, test
-task hooks      # run every pre-commit hook across the repo
+task hooks      # run every git hook across the repo (lefthook)
 ```
 
 Why Task over Make? Task is a single, statically-linked Go binary that behaves
@@ -78,7 +78,7 @@ runtime good/bad behaviour in the file or its README, not via the linter.
 ## Before you open a pull request
 
 1. `task ci` is green.
-2. `task hooks` is green (`pre-commit run --all-files`).
+2. `task hooks` is green (`lefthook run pre-commit --all-files`).
 3. New example scripts are executable (`chmod +x`) and paired.
 4. Commits follow [Conventional Commits](https://www.conventionalcommits.org/)
    (`feat:`, `fix:`, `docs:`, `test:`, `chore:`, `build:`, `ci:`).

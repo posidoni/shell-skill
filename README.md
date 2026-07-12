@@ -62,7 +62,7 @@ not by luck.
 Install the toolchain (macOS):
 
 ```sh
-brew install shellcheck shfmt nushell bats-core go-task pre-commit
+brew install shellcheck shfmt nushell bats-core go-task lefthook
 ```
 
 <details>
@@ -80,7 +80,7 @@ Then:
 ```sh
 task            # list every entrypoint
 task ci         # fmt-check, lint, examples, nushell, nushell-demo, test
-task hooks      # run pre-commit across the repo
+task hooks      # run every git hook across the repo (lefthook)
 ```
 
 This project uses [Task](https://taskfile.dev), not Make — a single
@@ -122,7 +122,7 @@ Install the Claude Code plugin:
 | `reference/` | in-depth references with citations |
 | `examples/` | runnable good/bad pairs |
 | `tools/`, `tests/` | verification scripts and the bats suite |
-| `.github/workflows/` | CI (ShellCheck, shfmt, bats, Nushell, pre-commit) |
+| `.github/workflows/` | CI (ShellCheck, shfmt, bats, Nushell, lefthook) |
 | `.claude-plugin/` | plugin + marketplace manifests |
 | `Taskfile.yml` | task runner entrypoints |
 
