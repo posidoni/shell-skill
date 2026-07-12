@@ -117,6 +117,11 @@ Install the Claude Code plugin:
 /plugin install shell-skill@shell-skill
 ```
 
+The plugin also ships a [`shell-reviewer`](agents/shell-reviewer.md)
+subagent: it reviews Bash/POSIX sh/Zsh/Nushell changes strictly against
+this repo's own cited rules, running `shellcheck`/`shfmt`/`nu --ide-check`
+itself rather than eyeballing style.
+
 ## Repository map
 
 | Path | What |
