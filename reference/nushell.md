@@ -206,6 +206,19 @@ became case-sensitive by default in
 - **Do not compare version strings with `<`/`>`** — they compare lexically, so
   `"0.100.0" < "0.99.0"` is true. Match exactly, or parse the components.
 
+## Introspection
+
+Explore commands from inside the shell — and note that `help commands` returns a
+**table** you can filter like any other data.
+([quick tour](https://www.nushell.sh/book/quick_tour.html))
+
+- `help <command>` or `<command> --help` — documentation for one command.
+- `help commands` — every builtin, as a table to `where`/`select`.
+- `help --find <text>` — search command docs.
+- `help commands | where is_const` — the commands usable at **parse time** (the
+  ones allowed in a `const`, or in a `source`/`use` path — see
+  [the mental model](#the-mental-model-parse-time-then-run-time)).
+
 ## Testing
 
 Static-check every `*.nu` with `nu --ide-check N script.nu`. Because parsing is a

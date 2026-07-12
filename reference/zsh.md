@@ -79,13 +79,19 @@ joined=${(j:,:)parts}      # join an array with a separator
 - **Parse options with `zparseopts -D -E -F`:** `-D` strips matched options from
   `$@`, `-E` allows options mixed with positionals, `-F` (zsh 5.8+) errors on an
   unknown flag instead of ignoring it.
-- **Check existence subprocess-free via `zsh/parameter`:**
+- **Check existence subprocess-free via `zsh/parameter`:** load it idempotently
+  with `-i` (a no-op if already loaded), then test the hashes.
 
   ```zsh
-  zmodload zsh/parameter
+  zmodload -i zsh/parameter
   (( $+commands[git] )) || return 1   # no `command -v` fork
   (( $+functions[my_helper] ))
   ```
+
+- **Resolve and bypass names with builtins:** `whence -w foo` reports the type
+  (`alias`/`builtin`/`command`/`function`/`reserved`); `builtin cd …` /
+  `command foo` run the builtin/external past a same-named function — the zsh
+  analogues of Bash's `type`/`builtin`/`command`.
 
 ## Globbing instead of parsing `ls`/`find`
 

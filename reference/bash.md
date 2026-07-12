@@ -64,6 +64,25 @@ tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 ```
 
+## Introspection: `command`, `builtin`, `type`, `help`
+
+Bash's own builtins tell you how a name resolves and let you bypass shadowing —
+no external tools needed.
+([Bash builtins](https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html))
+
+- **`command -v foo`** — portable existence check: prints the path (or nothing)
+  and returns non-zero if absent. Prefer it over `which`, an external that is not
+  always installed.
+- **`command foo`** — run the external or builtin `foo`, ignoring any shell
+  function or alias of the same name.
+- **`builtin cd …`** — force the builtin when a function named `cd` wraps it; the
+  standard way to write such a wrapper without infinite recursion.
+- **`type -t foo`** — reports `alias`, `keyword`, `function`, `builtin`, or
+  `file`, so you can branch on how a name would run; `type -a foo` lists every
+  match.
+- **`help [pattern]`** — built-in documentation for builtins (`help test`,
+  `help printf`), no man page required.
+
 ## Testing
 
 This repo verifies every `*.good.sh` with [bats](https://github.com/bats-core/bats-core)
