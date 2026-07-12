@@ -4,12 +4,19 @@
 #
 # shfmt reads its options from .editorconfig. `.bats` files are excluded because
 # their `@test` syntax is not valid POSIX/Bash and shfmt cannot parse it.
+# `*.bad.sh` files are excluded too: the anti-pattern they demonstrate is
+# sometimes invalid syntax under its own declared dialect (e.g. bash array
+# syntax under a `#!/bin/sh` shebang, which shfmt cannot parse in POSIX mode).
+# The example contract in CONTRIBUTING.md only requires `*.good.sh` to be
+# shfmt-clean, matching lint-shell.sh's existing `*.bad.sh` exclusion.
 set -euo pipefail
 
 root=$(git rev-parse --show-toplevel)
 cd "$root"
 
-mapfile -t files < <(git ls-files -co --exclude-standard -- '*.sh' '*.bash')
+mapfile -t files < <(
+  git ls-files -co --exclude-standard -- '*.sh' '*.bash' | grep -v -e '\.bad\.sh$' || true
+)
 
 if [[ ${#files[@]} -eq 0 ]]; then
   printf '%s\n' "format-check: no shell files found"

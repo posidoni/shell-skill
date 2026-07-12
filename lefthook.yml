@@ -12,8 +12,14 @@ pre-commit:
   commands:
     # shfmt format check. `-d` prints a diff and exits non-zero on any change.
     # shfmt reads its options from .editorconfig. `.bats` can't match *.{sh,bash}.
+    # `*.bad.sh` is excluded like the shellcheck hook below: some anti-patterns
+    # (e.g. bash arrays under a #!/bin/sh shebang) are invalid syntax under
+    # their own declared dialect, which shfmt cannot parse at all — and
+    # CONTRIBUTING.md's contract never required *.bad.sh to be shfmt-clean.
     shfmt:
       glob: "*.{sh,bash}"
+      exclude:
+        - "*.bad.sh"
       run: shfmt -d {staged_files}
 
     # ShellCheck every script except the intentional *.bad.sh anti-patterns.
