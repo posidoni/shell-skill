@@ -12,12 +12,19 @@
 
 ---
 
-Most shell advice is folklore. This repository turns it into something you can
-*check*: every rule has a rationale and a citation, every "do this" ships as a
-runnable example, and every "not this" is a safe example whose ShellCheck code is
-asserted. The same content is packaged as
-[Agent Skills](https://code.claude.com/docs/en/plugins) so an AI assistant can
-load it on demand.
+## The problem
+
+AI coding assistants now write a large share of the world's shell — and a lot of
+it is quietly wrong: unquoted expansions, missing `set -euo pipefail`, `[ ]`
+where `[[ ]]` belongs, real errors swallowed by a stray `|| true`. It works on
+the happy path and fails silently everywhere else. And the usual advice ("quote
+your variables") is folklore — unenforced, uncited, easy to skip.
+
+**shell-skill is the antidote.** It encodes the rules as cited references,
+runnable examples that CI checks, and
+[Agent Skills](https://code.claude.com/docs/en/plugins) you can load into Claude,
+Codex, or Copilot — so the shell your tools (and you) produce is safe by default,
+not by luck.
 
 > [!IMPORTANT]
 > This repository enforces its own advice. `*.good.sh` examples must run to
