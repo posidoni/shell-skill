@@ -92,7 +92,7 @@ sh at all (see [`meta-guidance.md`](meta-guidance.md)).
 
 See [`examples/posix-sh/02-positional-params-not-arrays`](../examples/posix-sh/02-positional-params-not-arrays.good.sh).
 
-## `[ ]`, never `[[ ]]` — `SC3010`/`SC3014`
+## `[ ]`, never `[[ ]]` — `SC3010`
 
 `[[ ]]` is a bash/ksh/zsh keyword. POSIX sh only has `[ ]` (the `test`
 command). Its operands still split and glob like any other command's, so
@@ -100,12 +100,17 @@ quoting matters *more* here, not less — and POSIX `[ ]` only has a single
 `=` for string equality, not `==`:
 
 ```sh
-# bad — SC3010 ([[ ]] undefined), SC3014 (== undefined)
+# bad — SC3010 ([[ ]] undefined); ShellCheck 0.10+ also reports SC3014 (==)
 if [[ $answer == yes ]]; then
 
 # good
 if [ "$answer" = yes ]; then
 ```
+
+> `SC3014` isn't asserted in the runnable example: this repo's Linux CI
+> installs ShellCheck via unpinned `apt`, currently 0.9.0, which predates
+> that check. `SC3010` alone is guaranteed on every CI runner this repo
+> uses.
 
 See [`examples/posix-sh/03-test-not-double-bracket`](../examples/posix-sh/03-test-not-double-bracket.good.sh).
 

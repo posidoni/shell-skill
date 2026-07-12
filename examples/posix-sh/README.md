@@ -16,7 +16,15 @@ so they are excluded from the shfmt formatting gate the same way every
 |------|-----------|-----------|------|
 | `01-no-local` | capture a result via `$(...)`, no leak | `local` (undefined in POSIX sh) | `SC3043` |
 | `02-positional-params-not-arrays` | `set -- ...` / `"$@"` as the list | `arr=(...)` (no array type in POSIX sh) | `SC3030`/`SC3054` |
-| `03-test-not-double-bracket` | `[ "$x" = y ]` | `[[ $x == y ]]` (undefined in POSIX sh) | `SC3010`/`SC3014` |
+| `03-test-not-double-bracket` | `[ "$x" = y ]` | `[[ $x == y ]]` (undefined in POSIX sh) | `SC3010` |
+
+> [!NOTE]
+> `[[ $x == y ]]` also triggers `SC3014` ("`==` in place of `=` is
+> undefined"), and every code above is confirmed with ShellCheck 0.11.0. But
+> `SC3014` isn't asserted in `03-test-not-double-bracket.bad.sh`: this repo's
+> Linux CI installs ShellCheck via unpinned `apt`, which currently resolves
+> to 0.9.0 — old enough to miss it. `SC3010` alone is guaranteed everywhere
+> this repo's own CI runs.
 
 ## Run them
 

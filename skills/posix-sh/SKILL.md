@@ -21,7 +21,7 @@ pairs in [`examples/posix-sh/`](../../examples/posix-sh/).
 | Strict mode | `set -eu` | `set -o pipefail` (not POSIX) |
 | Function-local state | capture via `$( )`, which already subshells | `local` (`SC3043`) |
 | Lists | `set -- ...` / `"$@"` | `arr=(...)` (`SC3030`/`SC3054`) |
-| Conditionals | `[ "$x" = y ]` | `[[ $x == y ]]` (`SC3010`/`SC3014`) |
+| Conditionals | `[ "$x" = y ]` | `[[ $x == y ]]` (`SC3010`) |
 | Sourcing | `. ./lib.sh` | `source ./lib.sh` (`SC3046`) |
 | Functions | `name() { ...; }` | `function name { ...; }` (`SC3045`) |
 
