@@ -5,9 +5,10 @@
 # expect-shellcheck: none
 set -euo pipefail
 
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+
 main() (
-  tmp=$(mktemp -d)
-  trap 'rm -rf "$tmp"' EXIT
   cd "$tmp"
 
   for file in *.txt; do
