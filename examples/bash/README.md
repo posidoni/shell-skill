@@ -10,3 +10,4 @@ safe to run and declares the ShellCheck code it triggers.
 | `01-mapfile-not-subshell` | `mapfile -t` reads lines safely | `arr=($(...))` word-splits | `SC2207` |
 | `02-array-not-scalar` | `"${arr[@]}"` expands all elements | bare `$arr` = first only | `SC2128` |
 | `03-quote-args` | `"$@"` forwards args intact | unquoted `$@` re-splits | `SC2068` |
+| `04-nullglob-empty-match` | `nullglob` makes an empty match produce zero words | an unmatched glob stays literal | none |
