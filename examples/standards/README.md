@@ -30,6 +30,7 @@ paired files side by side.
 | `08-brace-expansions` | `${base}_2026` | `$base_2026` (a different var) | `SC2250` |
 | `09-no-parse-ls` | glob `"$dir"/*.txt` | `$(ls *.txt)` | `SC2045` |
 | `10-parameter-expansion-not-sed` | `${path##*/}` strips in-process | `echo ... \| sed ...` forks twice | `SC2001` |
+| `11-command-v-not-which` | `command -v jq` checks a command | `which jq` is non-standard | `SC2230` |
 
 ## `.env.example`
 
