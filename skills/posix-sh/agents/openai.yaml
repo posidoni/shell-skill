@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=../../../schemas/openai-skill-metadata.schema.json
+interface:
+  display_name: "POSIX sh"
+  short_description: "Portable POSIX sh patterns"
+  brand_color: "#2563EB"
+  default_prompt: "Use $posix-sh to make this script portable under /bin/sh."
+policy:
+  allow_implicit_invocation: true

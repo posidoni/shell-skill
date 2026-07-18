@@ -3,9 +3,9 @@ name: streams
 description: >-
   Correct use of stdin, stdout, and stderr — send diagnostics to stderr and data
   to stdout, signal failure via the exit status, read input with while IFS= read
-  -r, put 2>&1 after the file redirection, and use here-docs/here-strings. Use
-  when a script produces output, reads input, or redirects, or when a pipe is
-  polluted by error text.
+  -r, order stderr duplication after file redirection, and use here-docs and
+  here-strings. Use when a script produces output, reads input, or redirects,
+  or when a pipe is polluted by error text.
 ---
 
 # Streams

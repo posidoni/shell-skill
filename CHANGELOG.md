@@ -6,6 +6,34 @@ follow [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-07-18
+
+### Added
+
+- Codex plugin manifest at `.codex-plugin/plugin.json`, with public UI metadata
+  for Shell Skill Kit.
+- ChatGPT/Codex companion instructions in `CHATGPT.md`, crawler-friendly
+  discovery in `llms.txt`, and `agents/openai.yaml` metadata for every skill.
+- Codex repo-scope skill symlinks in `.agents/skills/`, trusted Codex defaults
+  in `.codex/config.toml`, and portable Serena setup in `.serena/`.
+- Registry submission drafts for AgenticSkills and Awesome Codex Plugins.
+- JSON Schema modelines for tracked YAML-like files plus `task yaml-schemas` and
+  `task ai-integrations` gates that enforce the agent metadata contract.
+
+### Changed
+
+- Repositioned the project publicly as **Shell Skill Kit** while keeping the
+  package/repo name `shell-skill`.
+- Simplified hosted GitHub Actions to one Ubuntu quality gate that runs
+  `task ci` plus the hook mirror; macOS verification remains documented as a
+  local maintainer check.
+- Updated Claude plugin metadata, citation metadata, README, contributing docs,
+  and agent instructions for the 0.2.0 release.
+
+### Removed
+
+- Automatic GitHub release workflow; releases are now cut manually from tags.
+
 ## [0.1.0] - 2026-07-13
 
 Initial public release.
@@ -27,5 +55,6 @@ Initial public release.
 - Community health files: `README`, `CONTRIBUTING`, `SECURITY`,
   `CODE_OF_CONDUCT`, issue/PR templates, and Dependabot.
 
-[Unreleased]: https://github.com/posidoni/shell-skill/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/posidoni/shell-skill/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/posidoni/shell-skill/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/posidoni/shell-skill/releases/tag/v0.1.0

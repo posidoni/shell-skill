@@ -1,5 +1,6 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/citation-file-format/citation-file-format/main/schema.json
 cff-version: 1.2.0
-title: shell-skill
+title: Shell Skill Kit
 message: >-
   If you use this project, please cite it using the metadata below.
 type: software
@@ -11,8 +12,8 @@ repository-code: "https://github.com/posidoni/shell-skill"
 url: "https://github.com/posidoni/shell-skill"
 abstract: >-
   A cited, test-enforced guide to writing safe, correct shell (Bash, Zsh, POSIX
-  sh, and Nushell) for humans and AI coding agents, packaged as Claude Code
-  skills.
+  sh, and Nushell) for humans and AI coding agents, packaged as portable Agent
+  Skills plus Claude Code and Codex plugin metadata.
 keywords:
   - shell
   - bash
@@ -20,6 +21,8 @@ keywords:
   - nushell
   - shellcheck
   - agent-skills
+  - codex
+  - claude-code
 license: MIT
-version: 0.1.0
-date-released: "2026-07-13"
+version: 0.2.0
+date-released: "2026-07-18"

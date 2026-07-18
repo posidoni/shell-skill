@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=../../../schemas/openai-skill-metadata.schema.json
+interface:
+  display_name: "Nushell"
+  short_description: "Structured Nushell scripting"
+  brand_color: "#2563EB"
+  default_prompt: "Use $nushell to review a Nushell script or startup config."
+policy:
+  allow_implicit_invocation: true

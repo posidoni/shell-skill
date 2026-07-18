@@ -2,11 +2,11 @@
 
 <img src="assets/logo.svg" alt="shell-skill" width="104">
 
-# shell-skill
+# Shell Skill Kit
 
-**A cited, test-enforced guide to writing safe, correct shell** — Bash, Zsh, POSIX `sh`, and Nushell — for humans and AI coding agents.
+**Test-enforced shell rules for AI coding agents**: Bash, Zsh, POSIX `sh`, and Nushell, packaged as portable Agent Skills plus Claude Code and Codex plugin metadata.
 
-[Why](#why-this-exists) · [Skills](#skills) · [Quick start](#quick-start) · [Example contract](#the-example-contract) · [Use with agents](#use-it-with-ai-coding-agents) · [Contributing](#contributing)
+[Why](#why-this-exists) · [Skills](#skills) · [Quick start](#quick-start) · [Use with agents](#use-it-with-ai-coding-agents) · [Registry](#registry-and-discovery) · [Contributing](#contributing)
 
 </div>
 
@@ -20,11 +20,11 @@ where `[[ ]]` belongs, real errors swallowed by a stray `|| true`. It works on
 the happy path and fails silently everywhere else. And the usual advice ("quote
 your variables") is folklore — unenforced, uncited, easy to skip.
 
-**shell-skill is the antidote.** It encodes the rules as cited references,
-runnable examples that CI checks, and
-[Agent Skills](https://code.claude.com/docs/en/plugins) you can load into Claude,
-Codex, or Copilot — so the shell your tools (and you) produce is safe by default,
-not by luck.
+**Shell Skill Kit is the antidote.** It encodes the rules as cited references,
+runnable examples that CI checks, and portable
+[Agent Skills](https://agentskills.io/specification) you can load into Claude,
+Codex, Cursor, Copilot, or any client that understands `SKILL.md` folders. The
+goal is simple: generated shell should be safe by default, not by luck.
 
 > [!IMPORTANT]
 > This repository enforces its own advice. `*.good.sh` examples must run to
@@ -36,13 +36,15 @@ not by luck.
 - **Enforced, not asserted.** The example contract is checked in CI, so the
   guidance cannot rot without breaking the build.
 - **Portable by default.** Guidance calls out macOS Bash 3.2 and BSD-vs-GNU
-  differences instead of assuming Linux + GNU coreutils — and CI runs the
-  suite on both Linux and macOS, so that claim is checked, not just asserted.
+  differences instead of assuming Linux + GNU coreutils. The local gate runs on
+  macOS and Linux toolchains; hosted CI stays lean by running the full Ubuntu
+  quality gate.
 - **Judgment, not just syntax.** It also covers
   [when *not* to use shell](reference/meta-guidance.md) — reach for Python or Go
   before a 300-line Bash script.
-- **Agent-ready.** Ships `AGENTS.md`, `CLAUDE.md`, Copilot instructions, and an
-  installable Claude Code plugin so the rules travel with your tools.
+- **Agent-ready.** Ships `AGENTS.md`, `CHATGPT.md`, `CLAUDE.md`, Copilot
+  instructions, OpenAI skill metadata, and installable Claude Code plus Codex
+  plugin manifests so the rules travel with your tools.
 
 ## Skills
 
@@ -82,7 +84,7 @@ Then:
 
 ```sh
 task            # list every entrypoint
-task ci         # fmt-check, lint, examples, nushell, nushell-demo, test
+task ci         # fmt-check, lint, examples, nushell, nushell-demo, yaml-schemas, ai-integrations, test
 task hooks      # run every git hook across the repo (lefthook)
 ```
 
@@ -104,11 +106,13 @@ Nushell examples are `*.nu`, verified with `nu --ide-check`.
 
 ## Use it with AI coding agents
 
-| Agent | Entry point |
-|-------|-------------|
-| Codex, Cursor, general | [`AGENTS.md`](AGENTS.md) |
-| Claude Code | [`CLAUDE.md`](CLAUDE.md), or install the plugin (below) |
+| Surface | Entry point |
+|---------|-------------|
+| Codex / ChatGPT Cowork | [`.codex-plugin/plugin.json`](.codex-plugin/plugin.json), [`.agents/skills/`](.agents/skills/), [`.codex/config.toml`](.codex/config.toml), [`CHATGPT.md`](CHATGPT.md), and `skills/*/agents/openai.yaml` |
+| Claude Code | [`CLAUDE.md`](CLAUDE.md), [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json), or install the plugin below |
+| Cursor, Gemini CLI, Windsurf, Goose, other skill clients | Copy or link `skills/<name>/` into the client's skills directory |
 | GitHub Copilot | [`.github/copilot-instructions.md`](.github/copilot-instructions.md) |
+| Generic agents and crawlers | [`llms.txt`](llms.txt), [`AGENTS.md`](AGENTS.md), and the portable `SKILL.md` folders |
 
 Install the Claude Code plugin:
 
@@ -122,6 +126,20 @@ subagent: it reviews Bash/POSIX sh/Zsh/Nushell changes strictly against
 this repo's own cited rules, running `shellcheck`/`shfmt`/`nu --ide-check`
 itself rather than eyeballing style.
 
+## Registry and discovery
+
+The repo is ready for the open Agent Skills ecosystem:
+
+- `skills/*/SKILL.md` follows the Agent Skills directory and frontmatter
+  contract.
+- `.agents/skills/*` exposes those same skills to Codex repo-scope discovery.
+- `.codex-plugin/plugin.json` packages the same skills as a Codex plugin.
+- `.claude-plugin/plugin.json` keeps the Claude Code plugin installable.
+- `registry/` contains copy-ready listing drafts for AgenticSkills and Awesome
+  Codex Plugins. AgenticSkills submission needs the maintainer email at submit
+  time; Awesome Codex Plugins currently asks for its own scanner gate, which is
+  intentionally not added to CI unless you opt into that listing PR.
+
 ## Repository map
 
 | Path | What |
@@ -130,8 +148,14 @@ itself rather than eyeballing style.
 | `reference/` | in-depth references with citations |
 | `examples/` | runnable good/bad pairs |
 | `tools/`, `tests/` | verification scripts and the bats suite |
-| `.github/workflows/` | CI (ShellCheck, shfmt, bats, Nushell, lefthook) |
-| `.claude-plugin/` | plugin + marketplace manifests |
+| `.github/workflows/` | lean hosted CI quality gate |
+| `.agents/skills/` | Codex repo-scope skill discovery symlinks |
+| `.codex/config.toml` | trusted Codex defaults for this checkout |
+| `.serena/project.yml`, `.serena/memories/` | portable Serena onboarding context |
+| `.codex-plugin/`, `.claude-plugin/` | Codex and Claude Code plugin manifests |
+| `CHATGPT.md`, `llms.txt` | ChatGPT/Codex handoff and crawler-friendly index |
+| `registry/` | directory submission drafts and listing metadata |
+| `schemas/` | local JSON Schemas for project-owned YAML metadata |
 | `Taskfile.yml` | task runner entrypoints |
 
 ## Contributing
@@ -148,7 +172,8 @@ The repository layout follows established Agent-Skills projects:
 
 - [anthropics/skills](https://github.com/anthropics/skills) — the official Agent
   Skills repo; `SKILL.md` frontmatter and progressive disclosure.
-- [Agent Skills specification](https://agentskills.io) — the open standard.
+- [Agent Skills specification](https://agentskills.io/specification) — the open
+  standard.
 - [netresearch/skill-repo-skill](https://github.com/netresearch/skill-repo-skill)
   — skill-repository layout, plugin packaging, and validation.
 
@@ -158,7 +183,9 @@ Related projects and curated indexes of Agent Skills:
 [travisvn/awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills),
 [ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills),
 [rohitg00/awesome-claude-code-toolkit](https://github.com/rohitg00/awesome-claude-code-toolkit),
-[VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents).
+[VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents),
+[AgenticSkills](https://agenticskills.io/), and
+[Awesome Codex Plugins](https://github.com/hashgraph-online/awesome-codex-plugins).
 
 ### Shell references and inspiration
 

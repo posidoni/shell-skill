@@ -7,7 +7,8 @@ verified by the toolchain before it lands.
 
 ## Toolchain
 
-You need six tools. They are the same ones CI uses.
+You need six tools. Hosted CI installs them on Ubuntu; macOS developers can use
+the Homebrew command below for the same local gate.
 
 | Tool | Purpose |
 |------|---------|
@@ -28,10 +29,12 @@ brew install shellcheck shfmt nushell bats-core go-task lefthook
 [`tools/ci-install-linux.sh`](tools/ci-install-linux.sh); run it or copy the
 commands.
 
-CI runs the shell suite on **both Linux and macOS**
-([`tools/ci-install-macos.sh`](tools/ci-install-macos.sh)) — Bash, shfmt, and
-ShellCheck genuinely behave differently across the two (see
-[`reference/bash.md`](reference/bash.md)), so both are checked, not just one.
+Hosted CI runs one lean Ubuntu quality gate plus the full hook mirror. macOS
+portability still matters: run the Homebrew toolchain locally before touching
+Darwin-sensitive examples or reference text. The helper remains in
+[`tools/ci-install-macos.sh`](tools/ci-install-macos.sh) because Bash, shfmt, and
+ShellCheck can differ across macOS and Linux; we just do not spend hosted macOS
+minutes on every PR.
 
 Then install the git hooks once:
 
@@ -46,8 +49,10 @@ entrypoint. The important ones:
 
 ```sh
 task fmt        # format all shell scripts in place (shfmt -w)
-task ci         # everything CI runs: fmt-check, lint, examples, nushell, nushell-demo, test
+task ci         # everything CI runs: fmt-check, lint, examples, nushell, nushell-demo, yaml-schemas, ai-integrations, test
 task hooks      # run every git hook across the repo (lefthook)
+task yaml-schemas # verify tracked YAML-like files declare a JSON schema
+task ai-integrations # verify Codex/ChatGPT/Serena/plugin discovery surfaces
 ```
 
 Why Task over Make? Task is a single, statically-linked Go binary that behaves
@@ -88,6 +93,10 @@ runtime good/bad behaviour in the file or its README, not via the linter.
 4. Commits follow [Conventional Commits](https://www.conventionalcommits.org/)
    (`feat:`, `fix:`, `docs:`, `test:`, `chore:`, `build:`, `ci:`).
 5. No personal data, secrets, or machine-specific paths anywhere.
+6. Every tracked YAML-like file (`*.yml`, `*.yaml`, `*.cff`) has a
+   `yaml-language-server` JSON Schema modeline.
+7. `task ai-integrations` is green after changing skills, plugin manifests,
+   `.agents/`, `.codex/`, `.serena/`, `CHATGPT.md`, or `llms.txt`.
 
 ## Reporting problems
 

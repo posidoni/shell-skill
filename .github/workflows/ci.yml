@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: CI
 
 on:
@@ -14,66 +15,15 @@ concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  SHFMT_VERSION: v3.13.1
-  NU_VERSION: "0.114.1"
-  TASK_VERSION: "v3.52.0"
-  LEFTHOOK_VERSION: "v2.1.10"
-
 jobs:
-  shell:
-    name: shell (shellcheck + shfmt + bats)
-    runs-on: ubuntu-24.04
-    steps:
-      # Third-party and first-party actions are pinned to a full commit SHA
-      # (with a human-readable version comment) per GitHub's security hardening
-      # guidance: https://docs.github.com/actions/security-guides/security-hardening-for-github-actions
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-      - name: Install toolchain
-        run: ./tools/ci-install-linux.sh
-      - name: Format check (shfmt)
-        run: task fmt-check
-      - name: Lint (shellcheck)
-        run: task lint
-      - name: Example contract (bad examples)
-        run: task examples
-      - name: Behavioural tests (bats)
-        run: task test
-
-  shell-macos:
-    name: shell-macos (shellcheck + shfmt + bats on macOS)
-    runs-on: macos-14
-    steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-      - name: Install toolchain (Homebrew)
-        run: ./tools/ci-install-macos.sh
-      - name: Format check (shfmt)
-        run: task fmt-check
-      - name: Lint (shellcheck)
-        run: task lint
-      - name: Example contract (bad examples)
-        run: task examples
-      - name: Behavioural tests (bats)
-        run: task test
-
-  nushell:
-    name: nushell (nu --ide-check + startup demo)
+  quality:
+    name: quality gate
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - name: Install toolchain
         run: ./tools/ci-install-linux.sh
-      - name: Static check (nu --ide-check)
-        run: task nushell
-      - name: Startup-order demo (parse-time source bug + fix)
-        run: task nushell-demo
-
-  lefthook:
-    name: lefthook (mirrors CI hooks)
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-      - name: Install toolchain
-        run: ./tools/ci-install-linux.sh
-      - name: Run hooks over all files
-        run: lefthook run pre-commit --all-files
+      - name: Run full local gate
+        run: task ci
+      - name: Run hook mirror
+        run: task hooks

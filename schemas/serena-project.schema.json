@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/posidoni/shell-skill/schemas/serena-project.schema.json",
+  "title": "Serena Project Configuration",
+  "description": "Project-local schema for the tracked .serena/project.yml subset.",
+  "type": "object",
+  "required": [
+    "project_name",
+    "languages",
+    "encoding",
+    "ignore_all_files_in_gitignore",
+    "ls_workspace_folders",
+    "ignored_paths",
+    "read_only"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "languages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": ["bash", "json", "markdown"]
+      }
+    },
+    "encoding": {
+      "type": "string",
+      "const": "utf-8"
+    },
+    "activation_command": {
+      "type": ["string", "null"]
+    },
+    "activation_command_timeout": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "line_ending": {
+      "type": ["string", "null"],
+      "enum": ["lf", "crlf", "native", "unset", null]
+    },
+    "language_backend": {
+      "type": ["string", "null"],
+      "enum": ["LSP", "JetBrains", null]
+    },
+    "ignore_all_files_in_gitignore": {
+      "type": "boolean"
+    },
+    "ls_specific_settings": {
+      "type": "object"
+    },
+    "ls_workspace_folders": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "ls_additional_workspace_folders": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ignored_paths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "read_only": {
+      "type": "boolean"
+    },
+    "excluded_tools": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "included_optional_tools": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "fixed_tools": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "initial_prompt": {
+      "type": "string"
+    },
+    "read_only_memory_patterns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ignored_memory_patterns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

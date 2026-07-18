@@ -1,0 +1,40 @@
+# Shell Skill Kit
+
+> Test-enforced Agent Skills for safe shell: Bash, Zsh, POSIX sh, Nushell,
+> shebangs, streams, and common generated-script failure modes.
+
+Repository: https://github.com/posidoni/shell-skill
+License: MIT
+Package name: shell-skill
+
+## Start Here
+
+- [README.md](README.md): public overview, install paths, and skill map.
+- [AGENTS.md](AGENTS.md): canonical coding-agent instructions for this repo.
+- [CHATGPT.md](CHATGPT.md): Codex and ChatGPT packaging notes.
+- [CONTRIBUTING.md](CONTRIBUTING.md): example contract and verification gate.
+- [.agents/README.md](.agents/README.md): Codex repo-scope skill discovery notes.
+- [.codex/config.toml](.codex/config.toml): trusted Codex project defaults.
+- [.serena/project.yml](.serena/project.yml): portable Serena project setup.
+
+## Portable Skills
+
+- Codex repo-scope symlinks: [.agents/skills/](.agents/skills/)
+- [skills/shell-standards/SKILL.md](skills/shell-standards/SKILL.md): baseline Bash safety rules.
+- [skills/shebang/SKILL.md](skills/shebang/SKILL.md): interpreter-line guidance.
+- [skills/streams/SKILL.md](skills/streams/SKILL.md): stdin, stdout, stderr, and redirection.
+- [skills/bash/SKILL.md](skills/bash/SKILL.md): Bash-specific safety and portability.
+- [skills/posix-sh/SKILL.md](skills/posix-sh/SKILL.md): POSIX sh portability.
+- [skills/zsh/SKILL.md](skills/zsh/SKILL.md): zsh correctness and performance.
+- [skills/nushell/SKILL.md](skills/nushell/SKILL.md): Nushell structured scripting.
+
+## References
+
+- [reference/shell-standards.md](reference/shell-standards.md)
+- [reference/bash.md](reference/bash.md)
+- [reference/posix-sh.md](reference/posix-sh.md)
+- [reference/zsh.md](reference/zsh.md)
+- [reference/nushell.md](reference/nushell.md)
+- [reference/shebang.md](reference/shebang.md)
+- [reference/streams.md](reference/streams.md)
+- [reference/meta-guidance.md](reference/meta-guidance.md)

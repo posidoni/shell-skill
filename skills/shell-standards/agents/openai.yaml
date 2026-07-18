@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=../../../schemas/openai-skill-metadata.schema.json
+interface:
+  display_name: "Shell Standards"
+  short_description: "Baseline safe shell rules"
+  brand_color: "#2563EB"
+  default_prompt: "Use $shell-standards to review this Bash script against safe shell rules."
+policy:
+  allow_implicit_invocation: true

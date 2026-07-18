@@ -34,3 +34,11 @@ id_ed25519
 .claude/settings.local.json
 .claude/ralph-loop.local.md
 .ralph/
+
+# Serena project integration. Keep portable project config and curated memories
+# tracked; keep caches, logs, and developer-local overrides private.
+.serena/*
+!.serena/.gitignore
+!.serena/project.yml
+!.serena/memories/
+!.serena/memories/*.md

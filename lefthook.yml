@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json.schemastore.org/lefthook.json
 # lefthook.yml — Git hooks via Lefthook (https://lefthook.dev).
 #
 # A single static Go binary, no Python runtime — consistent with this repo's
@@ -40,6 +41,15 @@ pre-commit:
       glob: "*.nu"
       run: ./tools/check-nushell.sh
 
+    yaml-schemas:
+      glob: "*.{yml,yaml,cff}"
+      run: ./tools/check-yaml-schemas.sh
+
+    # Codex/ChatGPT/Serena discovery surfaces. This is cheap and self-scans, so
+    # it runs on every pre-commit to catch extensionless repo-scope skill links.
+    ai-integrations:
+      run: ./tools/check-ai-integrations.sh
+
     # JSON validity (replaces pre-commit's check-json), via nu — already required.
     json-valid:
       glob: "*.json"
@@ -52,7 +62,7 @@ pre-commit:
     # Trailing whitespace and final newline (fail-only, no mutation; portable).
     # Markdown is excluded — it uses two trailing spaces for hard line breaks.
     whitespace:
-      glob: "*.{sh,bash,nu,json,yml,yaml}"
+      glob: "*.{sh,bash,nu,json,yml,yaml,cff}"
       run: |
         status=0
         for f in {staged_files}; do
