@@ -72,7 +72,7 @@ tasks:
       - lefthook run pre-commit --all-files
 
   ci:
-    desc: Run everything CI runs
+    desc: Run the core quality gate
     cmds:
       - task: fmt-check
       - task: lint

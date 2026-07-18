@@ -14,6 +14,8 @@ follow [Semantic Versioning](https://semver.org/).
   keeping Codex repo-scope discovery intact.
 - Rebuilt the social preview around the Shell Skill Kit name and added the SVG
   source asset.
+- Removed the process diary and folded duplicate registry drafts into
+  `REGISTRY.md` to keep the public tree sharp.
 
 ## [0.2.0] - 2026-07-18
 

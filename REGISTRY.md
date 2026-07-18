@@ -17,10 +17,24 @@ discovery without requiring a heavyweight runtime.
 
 ## Listing Drafts
 
-- [registry/agenticskills-submission.md](registry/agenticskills-submission.md)
-  contains the copy-ready AgenticSkills submission fields.
-- [registry/awesome-codex-plugins-listing.md](registry/awesome-codex-plugins-listing.md)
-  contains the Awesome Codex Plugins listing snippet and scanner note.
+AgenticSkills:
+
+```text
+Skill Name: Shell Skill Kit
+GitHub Repository URL: https://github.com/posidoni/shell-skill
+Category: Code Quality & Testing
+Short Description: Test-enforced shell rules for AI agents: Bash, Zsh, POSIX sh, Nushell, shebangs, streams, and examples.
+Tags: shell, bash, zsh, posix-sh, nushell, shellcheck, shfmt, agent-skills, codex, claude-code, ai-coding
+Author Name: Mikhail Kuznetsov
+Website or Twitter: https://github.com/posidoni
+Email: maintainer email required at submission time
+```
+
+Awesome Codex Plugins:
+
+```md
+- [Shell Skill Kit](https://github.com/posidoni/shell-skill) - Test-enforced Agent Skills for safe Bash, Zsh, POSIX sh, Nushell, shebangs, streams, and generated-script review. Ships portable `SKILL.md` folders plus Codex and Claude Code plugin metadata.
+```
 
 Live submission still needs the maintainer's explicit action. Keep hosted CI
 lean unless a target registry requires a scanner gate for a listing PR.

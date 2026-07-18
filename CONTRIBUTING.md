@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in improving **shell-skill**. This repository teaches
+Thanks for your interest in improving **Shell Skill Kit**. This repository teaches
 safe, correct shell through rules, runnable examples, and AI-agent skills. Every
 contribution is expected to hold that same bar: correct, safe, portable, and
 verified by the toolchain before it lands.
@@ -49,7 +49,7 @@ entrypoint. The important ones:
 
 ```sh
 task fmt        # format all shell scripts in place (shfmt -w)
-task ci         # everything CI runs: fmt-check, lint, examples, nushell, nushell-demo, yaml-schemas, ai-integrations, test
+task ci         # core quality gate: fmt-check, lint, examples, nushell, nushell-demo, yaml-schemas, ai-integrations, test
 task hooks      # run every git hook across the repo (lefthook)
 task yaml-schemas # verify tracked YAML-like files declare a JSON schema
 task ai-integrations # verify Codex/ChatGPT/Serena/plugin discovery surfaces

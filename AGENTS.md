@@ -6,8 +6,9 @@ Cursor, and any other tool that reads an `AGENTS.md`. Humans should start with
 
 ## What this repository is
 
-`shell-skill` teaches safe, correct shell (Bash, Zsh, POSIX `sh`) and Nushell
+Shell Skill Kit teaches safe, correct shell (Bash, Zsh, POSIX `sh`) and Nushell
 through cited rules, runnable good/bad examples, and loadable agent skills.
+The stable technical id remains `shell-skill`.
 
 ## Golden rules
 
@@ -66,5 +67,5 @@ Nushell examples are `*.nu` and must pass `nu --ide-check`.
 | `.serena/project.yml`, `.serena/memories/` | portable Serena project setup |
 | `.codex-plugin/`, `.claude-plugin/` | Codex and Claude Code plugin manifests |
 | `CHATGPT.md`, `llms.txt` | ChatGPT/Codex handoff and crawler-friendly index |
-| `REGISTRY.md`, `registry/` | directory compatibility notes and listing drafts |
+| `REGISTRY.md` | directory compatibility notes and listing drafts |
 | `schemas/` | project-owned JSON Schemas |

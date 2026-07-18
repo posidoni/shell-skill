@@ -96,13 +96,13 @@ Linux CI installs pinned versions through
 | Generic agents and crawlers | [AGENTS.md](AGENTS.md), [llms.txt](llms.txt), `skills/*/SKILL.md` |
 
 See [REGISTRY.md](REGISTRY.md) for directory listings, ecosystem notes, and
-submission drafts.
+copy-ready submission text.
 
 ## Quality Gates
 
 ```sh
 task --list          # discover entrypoints
-task ci             # full local/CI gate
+task ci             # core quality gate
 task hooks          # lefthook pre-commit mirror across the repo
 task ai-integrations # Codex, ChatGPT, Serena, plugin, and skill metadata
 ```
@@ -121,7 +121,7 @@ schema-modeline checks, AI integration checks, and the bats suite.
 | `.agents/`, `.codex-plugin/`, `.claude-plugin/` | AI provider packaging |
 | `.serena/` | portable Serena project setup |
 | `schemas/` | project-owned JSON Schemas |
-| `registry/`, `REGISTRY.md` | listing drafts and discovery notes |
+| `REGISTRY.md` | listing drafts and discovery notes |
 
 ## Contributing
 

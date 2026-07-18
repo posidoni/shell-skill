@@ -2,7 +2,7 @@
 
 - Discover commands: `task --list`.
 - Format shell scripts: `task fmt`.
-- Full local/CI quality gate: `task ci`.
+- Core quality gate: `task ci`.
 - Pre-commit mirror across repo: `task hooks`.
 - YAML schema modeline gate: `task yaml-schemas`.
 - AI integration metadata gate: `task ai-integrations`.
