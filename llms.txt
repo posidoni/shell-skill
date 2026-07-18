@@ -13,6 +13,7 @@ Package name: shell-skill
 - [AGENTS.md](AGENTS.md): canonical coding-agent instructions for this repo.
 - [CHATGPT.md](CHATGPT.md): Codex and ChatGPT packaging notes.
 - [CONTRIBUTING.md](CONTRIBUTING.md): example contract and verification gate.
+- [REGISTRY.md](REGISTRY.md): provider compatibility and directory listings.
 - [.agents/README.md](.agents/README.md): Codex repo-scope skill discovery notes.
 - [.codex/config.toml](.codex/config.toml): trusted Codex project defaults.
 - [.serena/project.yml](.serena/project.yml): portable Serena project setup.

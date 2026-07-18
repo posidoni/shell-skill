@@ -66,4 +66,5 @@ Nushell examples are `*.nu` and must pass `nu --ide-check`.
 | `.serena/project.yml`, `.serena/memories/` | portable Serena project setup |
 | `.codex-plugin/`, `.claude-plugin/` | Codex and Claude Code plugin manifests |
 | `CHATGPT.md`, `llms.txt` | ChatGPT/Codex handoff and crawler-friendly index |
-| `schemas/`, `registry/` | JSON Schemas and directory submission drafts |
+| `REGISTRY.md`, `registry/` | directory compatibility notes and listing drafts |
+| `schemas/` | project-owned JSON Schemas |

@@ -6,6 +6,15 @@ follow [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Tightened the README into a lighter product overview and moved registry and
+  ecosystem details into `REGISTRY.md`.
+- Hid `.agents/skills` symlink duplicates from `rg` and `fd` searches while
+  keeping Codex repo-scope discovery intact.
+- Rebuilt the social preview around the Shell Skill Kit name and added the SVG
+  source asset.
+
 ## [0.2.0] - 2026-07-18
 
 ### Added
