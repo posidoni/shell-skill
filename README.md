@@ -52,6 +52,7 @@ It routes into these on demand, so only what you need enters context:
 
 | Reference | Covers | Examples |
 |-----------|--------|----------|
+| [cli-cheatsheets](reference/cli-cheatsheets.md) | how to check a tool (`--help` → `man` → context7), plus cached gotchas for fd/rg/sd/nu/jq/yq | prose |
 | [pipelines](reference/pipelines.md) | replacing `awk`/`sed`/`cut`, BSD-vs-GNU `sed -i`, worked rewrites | prose |
 | [shell-standards](reference/shell-standards.md) | strict mode, quoting, arrays, traps, `printf`, `[[ ]]` | [examples](examples/standards/) |
 | [bash](reference/bash.md) | Bash error handling, arrays, macOS/BSD portability, bash-3.2 traps | [examples](examples/bash/) |

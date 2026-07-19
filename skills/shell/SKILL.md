@@ -40,6 +40,28 @@ unreadable, unportable (BSD vs GNU), and silently wrong on unusual input.
 See [`reference/pipelines.md`](../../reference/pipelines.md) for the replacement
 table, BSD-vs-GNU traps, and worked rewrites.
 
+## 1b. Do not invoke a tool from memory — check it
+
+**A recalled flag is a guess.** Model memory for CLI flags is stale, version-skewed,
+and confidently wrong. Checking costs one command; guessing costs a silent wrong
+answer, which is worse than an error because nothing tells you.
+
+Escalate in this order, stopping as soon as you know:
+
+1. **`<cmd> --help`** — always first. Fast, offline, matches the *installed* version.
+   Modern Rust tools (`sd`, `rg`, `fd`) have excellent `--help`.
+2. **`man <cmd>`** — when `--help` is a summary and you need semantics. Not every tool
+   ships one (`nu` and `sttr` do not; `sd`, `rg`, `fd`, `jq`, `yq` do —
+   check with `man -w <cmd>`).
+3. **`<cmd> --version` + context7** — for a library or a tool with real documentation,
+   when behaviour differs across versions. Pin the answer to the installed version.
+4. **Web search** — last, for "why does X do Y" questions no reference answers.
+
+Then **run it once on a known input** before trusting it in a pipeline.
+
+Cached essentials and the gotchas that bite —
+[`reference/cli-cheatsheets.md`](../../reference/cli-cheatsheets.md).
+
 ## 2. Pick the interpreter deliberately
 
 Never write bare `bash` and hope. On macOS `/bin/bash` is **3.2** (2007, frozen over
