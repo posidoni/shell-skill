@@ -234,7 +234,7 @@ the script — ideal for CI and pre-commit. This repo's `task nushell`
   ([nushell/nushell.github.io](https://github.com/nushell/nushell.github.io));
   rules here are summarized, with links back to each source page.
 
-See [`skills/nushell`](../skills/nushell/) for the agent-facing summary and
+See [`skills/shell`](../skills/shell/) for the agent-facing summary and
 [`examples/nushell/`](../examples/nushell/) for parse-clean fragments.
 
 ## Invoking `nu` from an agent or a script

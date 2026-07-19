@@ -137,4 +137,4 @@ assumes a green lint means the streams are right.
 - Greg's Wiki — BashFAQ/001, BashPitfalls —
   <https://mywiki.wooledge.org/BashFAQ/001>
 
-See [`skills/streams`](../skills/streams/) and [`examples/streams/`](../examples/streams/).
+See [`skills/shell`](../skills/shell/) and [`examples/streams/`](../examples/streams/).

@@ -45,6 +45,14 @@ pre-commit:
       glob: "*.{yml,yaml,cff}"
       run: ./tools/check-yaml-schemas.sh
 
+    # Docs are the product here, so a dangling relative link is a defect. Runs
+    # on any markdown change; self-scans the whole tree because moving one file
+    # breaks links in files the commit never touched -- which is exactly how
+    # #18 shipped four of them.
+    doc-links:
+      glob: "*.md"
+      run: ./tools/check-doc-links.sh
+
     # Codex/ChatGPT discovery surfaces. This is cheap and self-scans, so
     # it runs on every pre-commit to catch extensionless repo-scope skill links.
     ai-integrations:

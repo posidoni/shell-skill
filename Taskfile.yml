@@ -56,6 +56,11 @@ tasks:
     cmds:
       - ./tools/check-yaml-schemas.sh
 
+  doc-links:
+    desc: Check every relative Markdown link resolves
+    cmds:
+      - ./tools/check-doc-links.sh
+
   ai-integrations:
     desc: Validate Codex, ChatGPT, and plugin discovery surfaces
     cmds:
@@ -80,5 +85,6 @@ tasks:
       - task: nushell
       - task: nushell-demo
       - task: yaml-schemas
+      - task: doc-links
       - task: ai-integrations
       - task: test

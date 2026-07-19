@@ -178,4 +178,4 @@ Three independent reasons `"${TTY}"` is correct and `$(tty)` is not:
   [Powerlevel10k](https://github.com/romkatv/powerlevel10k),
   [gitstatus](https://github.com/romkatv/gitstatus)
 
-See [`skills/zsh`](../skills/zsh/) for the summary.
+See [`skills/shell`](../skills/shell/) for the router summary.

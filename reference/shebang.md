@@ -135,4 +135,4 @@ this guide exists for.
 - Linux shebang doc fix, commit `f718c9fa87be` (Alan Urmancheev, [@alurm](https://github.com/alurm))
   — <https://github.com/torvalds/linux/commit/f718c9fa87be>
 
-See [`skills/shebang`](../skills/shebang/) and [`examples/shebang/`](../examples/shebang/).
+See [`skills/shell`](../skills/shell/) and [`examples/shebang/`](../examples/shebang/).
