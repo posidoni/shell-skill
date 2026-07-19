@@ -1,12 +1,17 @@
 ---
 name: shell
 description: >-
-  Use BEFORE writing or editing any shell command, script, pipeline, function,
-  Makefile recipe, Dockerfile RUN, CI run: block, cron entry, or .env file — in Bash,
-  Zsh, POSIX sh, or Nushell. Also use when a command grows past one stage, when
-  reaching for awk/sed/cut, when choosing a shebang, when handling stdout vs stderr
-  or exit codes, and when reviewing or debugging someone else's shell. Routes to the
-  right tool — often not shell at all — then applies the safety rules.
+  Load before running or writing ANY shell — including throwaway one-liners you
+  intend to run yourself, not just scripts you save. Trigger on the act, not the
+  request: you are about to type awk, sed, cut, or a second pipe; you are parsing
+  du/ps/ls/find output; a command needs a loop, a conditional, or arithmetic; you are
+  writing $(...) inside another $(...); you need a file list, sizes, or process info;
+  you are choosing a shebang or an interpreter; a command exceeds one line or will
+  outlive this session; output must be machine-read, or must separate data from
+  diagnostics; you are editing a Makefile recipe, Dockerfile RUN, CI run: block, cron
+  entry, or .env; or you are reviewing or debugging shell someone else wrote. Answers
+  "should this be shell at all?" first — usually jq, yq, sd, nu, Python or bun — then
+  applies the Bash/Zsh/POSIX/Nushell safety rules to whatever survives that question.
 ---
 
 # Shell
