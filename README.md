@@ -44,15 +44,22 @@ and reality drift, the build goes red.
 
 ## Skills
 
-| Skill | Use it for | Reference | Examples |
-|-------|------------|-----------|----------|
-| [shell-standards](skills/shell-standards/SKILL.md) | strict mode, quoting, arrays, traps, `printf`, `[[ ]]` | [reference](reference/shell-standards.md) | [examples](examples/standards/) |
-| [bash](skills/bash/SKILL.md) | Bash error handling, arrays, macOS/BSD portability | [reference](reference/bash.md) | [examples](examples/bash/) |
-| [posix-sh](skills/posix-sh/SKILL.md) | real `/bin/sh`, dash, no arrays, no bashisms | [reference](reference/posix-sh.md) | [examples](examples/posix-sh/) |
-| [zsh](skills/zsh/SKILL.md) | zsh functions, options, globbing, no-fork performance | [reference](reference/zsh.md) | prose |
-| [nushell](skills/nushell/SKILL.md) | structured pipelines, parse-time config, typed commands | [reference](reference/nushell.md) | [examples](examples/nushell/) |
-| [shebang](skills/shebang/SKILL.md) | `env`, `env -S`, interpreter paths, dialect choice | [reference](reference/shebang.md) | [examples](examples/shebang/) |
-| [streams](skills/streams/SKILL.md) | stdin/stdout/stderr, redirection order, here-docs | [reference](reference/streams.md) | [examples](examples/streams/) |
+| Skill | Use it for |
+|-------|------------|
+| [shell](skills/shell/SKILL.md) | **The single entry point.** Loads before you write any shell — picks the right tool first (often not shell), then applies the safety rules. |
+
+It routes into these on demand, so only what you need enters context:
+
+| Reference | Covers | Examples |
+|-----------|--------|----------|
+| [pipelines](reference/pipelines.md) | replacing `awk`/`sed`/`cut`, BSD-vs-GNU `sed -i`, worked rewrites | prose |
+| [shell-standards](reference/shell-standards.md) | strict mode, quoting, arrays, traps, `printf`, `[[ ]]` | [examples](examples/standards/) |
+| [bash](reference/bash.md) | Bash error handling, arrays, macOS/BSD portability, bash-3.2 traps | [examples](examples/bash/) |
+| [posix-sh](reference/posix-sh.md) | real `/bin/sh`, dash, no arrays, no bashisms | [examples](examples/posix-sh/) |
+| [zsh](reference/zsh.md) | zsh functions, options, globbing, no-fork performance | prose |
+| [nushell](reference/nushell.md) | structured pipelines, parse-time config, typed commands | [examples](examples/nushell/) |
+| [shebang](reference/shebang.md) | `env`, `env -S`, interpreter paths, dialect choice | [examples](examples/shebang/) |
+| [streams](reference/streams.md) | stdin/stdout/stderr, redirection order, exit codes | [examples](examples/streams/) |
 
 ShellCheck and shfmt do not support zsh, so zsh guidance is prose plus
 `zsh -n` syntax checking. For portable, lintable scripts, prefer Bash.
@@ -70,8 +77,7 @@ Portable skill clients:
 
 ```sh
 git clone https://github.com/posidoni/shell-skill
-ln -s "$PWD/shell-skill/skills/bash" "$YOUR_SKILLS_DIR/bash"
-ln -s "$PWD/shell-skill/skills/shell-standards" "$YOUR_SKILLS_DIR/shell-standards"
+ln -s "$PWD/shell-skill/skills/shell" "$YOUR_SKILLS_DIR/shell"
 ```
 
 Local development toolchain on macOS:

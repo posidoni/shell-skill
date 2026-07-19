@@ -21,13 +21,7 @@ Package name: shell-skill
 ## Portable Skills
 
 - Codex repo-scope symlinks: [.agents/skills/](.agents/skills/)
-- [skills/shell-standards/SKILL.md](skills/shell-standards/SKILL.md): baseline Bash safety rules.
-- [skills/shebang/SKILL.md](skills/shebang/SKILL.md): interpreter-line guidance.
-- [skills/streams/SKILL.md](skills/streams/SKILL.md): stdin, stdout, stderr, and redirection.
-- [skills/bash/SKILL.md](skills/bash/SKILL.md): Bash-specific safety and portability.
-- [skills/posix-sh/SKILL.md](skills/posix-sh/SKILL.md): POSIX sh portability.
-- [skills/zsh/SKILL.md](skills/zsh/SKILL.md): zsh correctness and performance.
-- [skills/nushell/SKILL.md](skills/nushell/SKILL.md): Nushell structured scripting.
+- [skills/shell/SKILL.md](skills/shell/SKILL.md): the single entry point — tool selection (jq/yq/sd/nu/Python over awk+sed), interpreter choice, the Bash non-negotiables, then routes into reference/ per dialect.
 
 ## References
 

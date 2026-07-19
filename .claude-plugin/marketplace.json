@@ -10,7 +10,7 @@
       "source": "./",
       "description": "Shell Skill Kit: safe shell rules for AI coding agents.",
       "category": "development",
-      "version": "0.2.0"
+      "version": "0.3.0"
     }
   ]
 }

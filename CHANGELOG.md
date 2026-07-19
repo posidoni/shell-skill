@@ -69,3 +69,33 @@ Initial public release.
 [Unreleased]: https://github.com/posidoni/shell-skill/compare/v0.2.0...HEAD
 [0.2.0]: https://github.com/posidoni/shell-skill/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/posidoni/shell-skill/releases/tag/v0.1.0
+
+## 0.3.0
+
+### Changed — breaking
+
+- **Seven skills collapsed into one.** `bash`, `zsh`, `posix-sh`, `nushell`,
+  `shebang`, `streams` and `shell-standards` are no longer separate skills; there is
+  now a single `shell` skill that routes into `reference/` on demand. Anything
+  referencing `shell-skill:bash` (or the other six) must now use `shell-skill:shell`.
+
+  Why: seven sibling skills competed for the same request, and an agent had to choose
+  a dialect *before* knowing which shell it was about to write — so in practice it
+  chose none. The `reference/` files, which held the real content, are unchanged.
+
+- **Descriptions are trigger-first.** Each old description opened with what the skill
+  *contained* ("Bash-specific practices beyond the shared standards — error
+  handling..."), and buried the activation cue at the end or omitted it. Skill
+  selection weights the opening, so the kit sat unused while agents wrote unsafe
+  shell. The new description leads with when to load it.
+
+### Added
+
+- `reference/pipelines.md` — the missing guidance on **not** writing shell: a
+  replacement table (`jq`/`yq`/`sd`/`fd`/`rg`/`nu`/Python over `awk`+`sed`), why
+  `sed -i` has no portable invocation across BSD and GNU, when `awk` is still
+  correct, and worked rewrites of a fragile pipeline into Nushell and Python.
+- Interpreter-selection guidance in the skill body: macOS `/bin/bash` is 3.2 and
+  lacks `mapfile`, associative arrays and `${var^^}`, so `#!/usr/bin/env bash` alone
+  is not a portability strategy.
+

@@ -1,6 +1,6 @@
 {
   "name": "shell-skill",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Shell Skill Kit: test-enforced skills for safe Bash, Zsh, POSIX sh, and Nushell.",
   "author": {
     "name": "Mikhail Kuznetsov",
