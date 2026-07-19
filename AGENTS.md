@@ -4,6 +4,11 @@ Guidance for AI coding agents — OpenAI Codex, GitHub Copilot, Claude Code,
 Cursor, and any other tool that reads an `AGENTS.md`. Humans should start with
 [README.md](README.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Public repo
+
+This repo is public. Do not push or publish anything without Mikhail's explicit
+permission. Editing locally and showing the diff is fine.
+
 ## What this repository is
 
 Shell Skill Kit teaches safe, correct shell (Bash, Zsh, POSIX `sh`) and Nushell
