@@ -76,15 +76,14 @@ if (($c | get -o features.multi_agent) != true) {
 
 while IFS= read -r skill_md; do
   skill_dir=${skill_md%/SKILL.md}
-  skill_name=$(awk '
-    $0 == "---" { fence++; next }
-    fence == 1 && $1 == "name:" {
-      sub(/^name:[[:space:]]*/, "", $0)
-      gsub(/^["'\'']|["'\'']$/, "", $0)
-      print $0
-      exit
-    }
-  ' "$skill_md")
+  # YAML frontmatter is structured data, so parse it with a YAML parser. The
+  # hand-rolled awk this replaces had to re-implement fence tracking, `name:`
+  # matching, and quote stripping -- exactly the "no awk beyond {print $1}"
+  # rule this kit teaches.
+  # -n/--no-config-file keeps it deterministic; --no-newline because the result
+  # is captured in a command substitution; --raw because `open` on a .md path
+  # does not yield a string, which breaks `split row`.
+  skill_name=$(nu -n --no-newline -c "open --raw '$skill_md' | split row '---' | get 1 | from yaml | get name" 2> /dev/null || :)
 
   if [[ -z $skill_name ]]; then
     fail "missing name frontmatter: $skill_md"

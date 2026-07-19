@@ -27,3 +27,17 @@ jobs:
         run: task ci
       - name: Run hook mirror
         run: task hooks
+
+  # Portability signal, not version reproducibility. This kit's entire premise
+  # is that Bash, shfmt and ShellCheck behave differently on BSD and GNU (no
+  # portable `sed -i`; /bin/bash is 3.2 on macOS) -- a Linux-only gate cannot
+  # verify the thing this repo teaches. See tools/ci-install-macos.sh.
+  quality-macos:
+    name: quality gate (macOS)
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - name: Install toolchain (Homebrew)
+        run: ./tools/ci-install-macos.sh
+      - name: Run full local gate
+        run: task ci
