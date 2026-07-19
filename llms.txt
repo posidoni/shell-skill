@@ -16,7 +16,6 @@ Package name: shell-skill
 - [REGISTRY.md](REGISTRY.md): provider compatibility and directory listings.
 - [.agents/README.md](.agents/README.md): Codex repo-scope skill discovery notes.
 - [.codex/config.toml](.codex/config.toml): trusted Codex project defaults.
-- [.serena/project.yml](.serena/project.yml): portable Serena project setup.
 
 ## Portable Skills
 

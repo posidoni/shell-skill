@@ -10,7 +10,6 @@ project contract remains [AGENTS.md](AGENTS.md); read it first.
   these entries are symlinks to the canonical `skills/` folders.
 - Use `.codex/config.toml` for durable project defaults. It currently enables
   multi-agent work only; sandbox, approval, and credentials stay user-local.
-- Use `.serena/project.yml` and `mem:core` when Serena is available.
 - Use `skills/*/SKILL.md` as portable Agent Skills. The `agents/openai.yaml`
   files add ChatGPT/Codex UI metadata only; they do not replace `SKILL.md`.
 - Use `reference/*.md` only when a task needs the cited rationale behind a rule.
@@ -21,8 +20,7 @@ project contract remains [AGENTS.md](AGENTS.md); read it first.
 - Preserve the good/bad example contract from `CONTRIBUTING.md`.
 - Run `task ci` before handing back release work.
 - Run `task hooks` before commits or pull requests.
-- Run `task ai-integrations` after changing AI metadata, repo-scoped skills, or
-  Serena setup.
+- Run `task ai-integrations` after changing AI metadata or repo-scoped skills.
 - Keep local tool state out of the release package.
 
 ## Release packaging

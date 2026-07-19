@@ -12,7 +12,6 @@ discovery without requiring a heavyweight runtime.
 | Codex / ChatGPT plugin | `.codex-plugin/plugin.json` |
 | Claude Code plugin | `.claude-plugin/plugin.json` |
 | ChatGPT / Codex handoff | `CHATGPT.md`, `llms.txt`, `skills/*/agents/openai.yaml` |
-| Serena project context | `.serena/project.yml`, `.serena/memories/*.md` |
 | GitHub Copilot | `.github/copilot-instructions.md` |
 
 ## Listing Drafts
@@ -50,9 +49,8 @@ lean unless a target registry requires a scanner gate for a listing PR.
   top-level `skills/` directory and are referenced from the manifest.
 - Keep `.agents/skills/*` as symlinks to `../../skills/*`; do not duplicate skill
   bodies for Codex repo-scope discovery.
-- Keep Serena language servers limited to Bash, Markdown, and JSON until the YAML
-  and TOML wrappers stop logging noisy client-configuration errors. YAML, TOML,
-  and Nushell are covered by repository gates instead.
+- YAML, TOML, and Nushell are covered by repository gates (`task yaml-schemas`,
+  `task nushell`) rather than by editor tooling.
 
 ## Ecosystem References
 

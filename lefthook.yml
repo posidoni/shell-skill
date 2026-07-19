@@ -45,7 +45,7 @@ pre-commit:
       glob: "*.{yml,yaml,cff}"
       run: ./tools/check-yaml-schemas.sh
 
-    # Codex/ChatGPT/Serena discovery surfaces. This is cheap and self-scans, so
+    # Codex/ChatGPT discovery surfaces. This is cheap and self-scans, so
     # it runs on every pre-commit to catch extensionless repo-scope skill links.
     ai-integrations:
       run: ./tools/check-ai-integrations.sh

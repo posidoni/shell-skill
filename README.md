@@ -25,7 +25,7 @@ It is deliberately not a framework. The repo ships four things:
 - short `SKILL.md` files that agents can load on demand;
 - cited references for the reasoning behind each rule;
 - runnable good/bad examples that CI checks;
-- provider metadata for Codex, ChatGPT, Claude Code, Copilot, Serena, and other
+- provider metadata for Codex, ChatGPT, Claude Code, Copilot, and other
   skill-aware tools.
 
 The design contract is simple: **tiny skill bodies, deep references, executable
@@ -99,7 +99,6 @@ Linux CI installs pinned versions through
 | Codex / ChatGPT Cowork | [.codex-plugin/plugin.json](.codex-plugin/plugin.json), [.agents/skills/](.agents/skills/), [.codex/config.toml](.codex/config.toml), [CHATGPT.md](CHATGPT.md) |
 | Claude Code | [CLAUDE.md](CLAUDE.md), [.claude-plugin/plugin.json](.claude-plugin/plugin.json), [agents/shell-reviewer.md](agents/shell-reviewer.md) |
 | GitHub Copilot | [.github/copilot-instructions.md](.github/copilot-instructions.md) |
-| Serena | [.serena/project.yml](.serena/project.yml), [.serena/memories/](.serena/memories/) |
 | Generic agents and crawlers | [AGENTS.md](AGENTS.md), [llms.txt](llms.txt), `skills/*/SKILL.md` |
 
 See [REGISTRY.md](REGISTRY.md) for directory listings, ecosystem notes, and
@@ -111,7 +110,7 @@ copy-ready submission text.
 task --list          # discover entrypoints
 task ci             # core quality gate
 task hooks          # lefthook pre-commit mirror across the repo
-task ai-integrations # Codex, ChatGPT, Serena, plugin, and skill metadata
+task ai-integrations # Codex, ChatGPT, plugin, and skill metadata
 ```
 
 `task ci` runs formatting, shell linting, example checks, Nushell parsing, YAML
@@ -126,7 +125,6 @@ schema-modeline checks, AI integration checks, and the bats suite.
 | `examples/` | runnable good/bad contracts |
 | `tools/`, `tests/` | verification scripts and bats tests |
 | `.agents/`, `.codex-plugin/`, `.claude-plugin/` | AI provider packaging |
-| `.serena/` | portable Serena project setup |
 | `schemas/` | project-owned JSON Schemas |
 | `REGISTRY.md` | listing drafts and discovery notes |
 

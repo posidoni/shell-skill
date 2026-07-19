@@ -23,12 +23,10 @@ require_dir() {
 require_file ".codex-plugin/plugin.json"
 require_file ".claude-plugin/plugin.json"
 require_file ".codex/config.toml"
-require_file ".serena/project.yml"
 require_file "CHATGPT.md"
 require_file "llms.txt"
 require_file "schemas/codex-plugin.schema.json"
 require_file "schemas/openai-skill-metadata.schema.json"
-require_file "schemas/serena-project.schema.json"
 require_dir ".agents/skills"
 
 if [[ -d .codex-plugin ]]; then
@@ -75,31 +73,6 @@ if (($c | get -o features.multi_agent) != true) {
   error make {msg: ".codex/config.toml must set features.multi_agent = true"}
 }
 ' || fail "invalid Codex project config"
-
-nu -c '
-let s = open ".serena/project.yml"
-for key in [project_name languages encoding ignore_all_files_in_gitignore ls_workspace_folders read_only] {
-  if (($s | get -o $key) == null) {
-    error make {msg: $"missing .serena/project.yml field: ($key)"}
-  }
-}
-for lang in [bash markdown json] {
-  if not ($lang in $s.languages) {
-    error make {msg: $"missing Serena language: ($lang)"}
-  }
-}
-for lang in $s.languages {
-  if not ($lang in [bash markdown json]) {
-    error make {msg: $"unsupported noisy Serena language in this repo: ($lang)"}
-  }
-}
-if $s.project_name != "shell-skill" {
-  error make {msg: ".serena/project.yml project_name must be shell-skill"}
-}
-if $s.ignore_all_files_in_gitignore != true {
-  error make {msg: ".serena/project.yml must respect gitignore"}
-}
-' || fail "invalid Serena project config"
 
 while IFS= read -r skill_md; do
   skill_dir=${skill_md%/SKILL.md}

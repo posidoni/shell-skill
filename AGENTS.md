@@ -31,7 +31,7 @@ task fmt         # format shell scripts (shfmt -w)
 task ci          # fmt-check, lint, examples, nushell, nushell-demo, yaml-schemas, ai-integrations, test
 task hooks       # lefthook run pre-commit --all-files
 task yaml-schemas # ensure YAML-like files declare JSON Schemas
-task ai-integrations # validate Codex/ChatGPT/Serena discovery
+task ai-integrations # validate Codex/ChatGPT discovery
 ```
 
 ## The example contract
@@ -64,7 +64,6 @@ Nushell examples are `*.nu` and must pass `nu --ide-check`.
 | `Taskfile.yml` | task runner entrypoints |
 | `.agents/skills/` | Codex repo-scope skill symlinks to `skills/` |
 | `.codex/config.toml` | trusted Codex project defaults |
-| `.serena/project.yml`, `.serena/memories/` | portable Serena project setup |
 | `.codex-plugin/`, `.claude-plugin/` | Codex and Claude Code plugin manifests |
 | `CHATGPT.md`, `llms.txt` | ChatGPT/Codex handoff and crawler-friendly index |
 | `REGISTRY.md` | directory compatibility notes and listing drafts |

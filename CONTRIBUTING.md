@@ -52,7 +52,7 @@ task fmt        # format all shell scripts in place (shfmt -w)
 task ci         # core quality gate: fmt-check, lint, examples, nushell, nushell-demo, yaml-schemas, ai-integrations, test
 task hooks      # run every git hook across the repo (lefthook)
 task yaml-schemas # verify tracked YAML-like files declare a JSON schema
-task ai-integrations # verify Codex/ChatGPT/Serena/plugin discovery surfaces
+task ai-integrations # verify Codex/ChatGPT/plugin discovery surfaces
 ```
 
 Why Task over Make? Task is a single, statically-linked Go binary that behaves
@@ -96,7 +96,7 @@ runtime good/bad behaviour in the file or its README, not via the linter.
 6. Every tracked YAML-like file (`*.yml`, `*.yaml`, `*.cff`) has a
    `yaml-language-server` JSON Schema modeline.
 7. `task ai-integrations` is green after changing skills, plugin manifests,
-   `.agents/`, `.codex/`, `.serena/`, `CHATGPT.md`, or `llms.txt`.
+   `.agents/`, `.codex/`, `CHATGPT.md`, or `llms.txt`.
 
 ## Reporting problems
 

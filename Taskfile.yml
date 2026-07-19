@@ -57,7 +57,7 @@ tasks:
       - ./tools/check-yaml-schemas.sh
 
   ai-integrations:
-    desc: Validate Codex, ChatGPT, Serena, and plugin discovery surfaces
+    desc: Validate Codex, ChatGPT, and plugin discovery surfaces
     cmds:
       - ./tools/check-ai-integrations.sh
 
