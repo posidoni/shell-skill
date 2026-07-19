@@ -1,0 +1,34 @@
+# Shell Skill Kit
+
+> Test-enforced Agent Skills for safe shell: Bash, Zsh, POSIX sh, Nushell,
+> shebangs, streams, and common generated-script failure modes.
+
+Repository: https://github.com/posidoni/shell-skill
+License: MIT
+Package name: shell-skill
+
+## Start Here
+
+- [README.md](README.md): public overview, install paths, and skill map.
+- [AGENTS.md](AGENTS.md): canonical coding-agent instructions for this repo.
+- [CHATGPT.md](CHATGPT.md): Codex and ChatGPT packaging notes.
+- [CONTRIBUTING.md](CONTRIBUTING.md): example contract and verification gate.
+- [REGISTRY.md](REGISTRY.md): provider compatibility and directory listings.
+- [.agents/README.md](.agents/README.md): Codex repo-scope skill discovery notes.
+- [.codex/config.toml](.codex/config.toml): trusted Codex project defaults.
+
+## Portable Skills
+
+- Codex repo-scope symlinks: [.agents/skills/](.agents/skills/)
+- [skills/shell/SKILL.md](skills/shell/SKILL.md): the single entry point — tool selection (jq/yq/sd/nu/Python over awk+sed), interpreter choice, the Bash non-negotiables, then routes into reference/ per dialect.
+
+## References
+
+- [reference/shell-standards.md](reference/shell-standards.md)
+- [reference/bash.md](reference/bash.md)
+- [reference/posix-sh.md](reference/posix-sh.md)
+- [reference/zsh.md](reference/zsh.md)
+- [reference/nushell.md](reference/nushell.md)
+- [reference/shebang.md](reference/shebang.md)
+- [reference/streams.md](reference/streams.md)
+- [reference/meta-guidance.md](reference/meta-guidance.md)

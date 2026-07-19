@@ -34,3 +34,10 @@ id_ed25519
 .claude/settings.local.json
 .claude/ralph-loop.local.md
 .ralph/
+
+# Serena. Untracked entirely as of 2026-07-19 -- the six "curated memories"
+# that used to be whitelisted here were Serena's own auto-generated onboarding
+# output (conventions, tech_stack, suggested_commands...), not authored content,
+# and they duplicated README.md and the Taskfile while drifting from them.
+# Editor/agent integration state does not belong in a public repo.
+.serena/

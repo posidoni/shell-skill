@@ -1,7 +1,7 @@
 {
   "name": "shell-skill",
-  "version": "0.1.0",
-  "description": "Skills for writing safe, correct shell — Bash, Zsh, POSIX sh, and Nushell.",
+  "version": "0.3.0",
+  "description": "Shell Skill Kit: test-enforced skills for safe Bash, Zsh, POSIX sh, and Nushell.",
   "author": {
     "name": "Mikhail Kuznetsov",
     "url": "https://github.com/posidoni"
@@ -18,6 +18,10 @@
     "shellcheck",
     "shfmt",
     "safety",
-    "agent-skills"
+    "agent-skills",
+    "codex",
+    "chatgpt",
+    "claude-code",
+    "shell-safety"
   ]
 }

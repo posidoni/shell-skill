@@ -7,5 +7,8 @@
 LICENSE
 CHANGELOG.md
 
+# Codex repo-scope skills are symlinks to skills/*; hide duplicate search hits.
+.agents/skills/**
+
 # Keep broad `rg` sweeps bounded (repo convention: never traverse VCS/data dirs).
 .git/

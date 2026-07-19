@@ -6,6 +6,45 @@ follow [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Tightened the README into a lighter product overview and moved registry and
+  ecosystem details into `REGISTRY.md`.
+- Hid `.agents/skills` symlink duplicates from `rg` and `fd` searches while
+  keeping Codex repo-scope discovery intact.
+- Rebuilt the social preview around the Shell Skill Kit name and added the SVG
+  source asset.
+- Removed the process diary and folded duplicate registry drafts into
+  `REGISTRY.md` to keep the public tree sharp.
+
+## [0.2.0] - 2026-07-18
+
+### Added
+
+- Codex plugin manifest at `.codex-plugin/plugin.json`, with public UI metadata
+  for Shell Skill Kit.
+- ChatGPT/Codex companion instructions in `CHATGPT.md`, crawler-friendly
+  discovery in `llms.txt`, and `agents/openai.yaml` metadata for every skill.
+- Codex repo-scope skill symlinks in `.agents/skills/`, trusted Codex defaults
+  in `.codex/config.toml`, and portable Serena setup in `.serena/`.
+- Registry submission drafts for AgenticSkills and Awesome Codex Plugins.
+- JSON Schema modelines for tracked YAML-like files plus `task yaml-schemas` and
+  `task ai-integrations` gates that enforce the agent metadata contract.
+
+### Changed
+
+- Repositioned the project publicly as **Shell Skill Kit** while keeping the
+  package/repo name `shell-skill`.
+- Simplified hosted GitHub Actions to one Ubuntu quality gate that runs
+  `task ci` plus the hook mirror; macOS verification remains documented as a
+  local maintainer check.
+- Updated Claude plugin metadata, citation metadata, README, contributing docs,
+  and agent instructions for the 0.2.0 release.
+
+### Removed
+
+- Automatic GitHub release workflow; releases are now cut manually from tags.
+
 ## [0.1.0] - 2026-07-13
 
 Initial public release.
@@ -27,5 +66,36 @@ Initial public release.
 - Community health files: `README`, `CONTRIBUTING`, `SECURITY`,
   `CODE_OF_CONDUCT`, issue/PR templates, and Dependabot.
 
-[Unreleased]: https://github.com/posidoni/shell-skill/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/posidoni/shell-skill/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/posidoni/shell-skill/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/posidoni/shell-skill/releases/tag/v0.1.0
+
+## 0.3.0
+
+### Changed — breaking
+
+- **Seven skills collapsed into one.** `bash`, `zsh`, `posix-sh`, `nushell`,
+  `shebang`, `streams` and `shell-standards` are no longer separate skills; there is
+  now a single `shell` skill that routes into `reference/` on demand. Anything
+  referencing `shell-skill:bash` (or the other six) must now use `shell-skill:shell`.
+
+  Why: seven sibling skills competed for the same request, and an agent had to choose
+  a dialect *before* knowing which shell it was about to write — so in practice it
+  chose none. The `reference/` files, which held the real content, are unchanged.
+
+- **Descriptions are trigger-first.** Each old description opened with what the skill
+  *contained* ("Bash-specific practices beyond the shared standards — error
+  handling..."), and buried the activation cue at the end or omitted it. Skill
+  selection weights the opening, so the kit sat unused while agents wrote unsafe
+  shell. The new description leads with when to load it.
+
+### Added
+
+- `reference/pipelines.md` — the missing guidance on **not** writing shell: a
+  replacement table (`jq`/`yq`/`sd`/`fd`/`rg`/`nu`/Python over `awk`+`sed`), why
+  `sed -i` has no portable invocation across BSD and GNU, when `awk` is still
+  correct, and worked rewrites of a fragile pipeline into Nushell and Python.
+- Interpreter-selection guidance in the skill body: macOS `/bin/bash` is 3.2 and
+  lacks `mapfile`, associative arrays and `${var^^}`, so `#!/usr/bin/env bash` alone
+  is not a portability strategy.
+

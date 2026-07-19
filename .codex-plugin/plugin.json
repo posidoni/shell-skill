@@ -1,0 +1,53 @@
+{
+  "name": "shell-skill",
+  "version": "0.3.0",
+  "description": "Shell Skill Kit: test-enforced Agent Skills for safe Bash, Zsh, POSIX sh, and Nushell.",
+  "author": {
+    "name": "Mikhail Kuznetsov",
+    "url": "https://github.com/posidoni"
+  },
+  "repository": "https://github.com/posidoni/shell-skill",
+  "homepage": "https://github.com/posidoni/shell-skill#readme",
+  "license": "MIT",
+  "keywords": [
+    "shell",
+    "bash",
+    "zsh",
+    "nushell",
+    "posix",
+    "shellcheck",
+    "shfmt",
+    "agent-skills",
+    "codex",
+    "chatgpt",
+    "claude-code",
+    "cursor",
+    "ai-coding",
+    "shell-safety"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Shell Skill Kit",
+    "shortDescription": "Safe shell rules for AI coding agents",
+    "longDescription": "A portable, cited, test-enforced skill kit for writing and reviewing shell. Covers Bash, Zsh, POSIX sh, Nushell, shebangs, streams, and the failure modes that make generated scripts quietly unsafe.",
+    "developerName": "Mikhail Kuznetsov",
+    "category": "Development",
+    "capabilities": [
+      "Skills",
+      "Review",
+      "Linting"
+    ],
+    "websiteURL": "https://github.com/posidoni/shell-skill",
+    "brandColor": "#2563EB",
+    "composerIcon": "./assets/logo.svg",
+    "logo": "./assets/logo.svg",
+    "screenshots": [
+      "./assets/social-preview.png"
+    ],
+    "defaultPrompt": [
+      "Use Shell Skill Kit to review this shell script.",
+      "Write a portable Bash script with safe defaults.",
+      "Explain why this shell example is unsafe."
+    ]
+  }
+}

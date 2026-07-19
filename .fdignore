@@ -7,3 +7,6 @@
 
 # Legal / changelog boilerplate is rarely a useful `fd` hit.
 LICENSE
+
+# Codex repo-scope skills are symlinks to skills/*; hide duplicate listings.
+.agents/skills/

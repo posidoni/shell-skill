@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/posidoni/shell-skill/schemas/openai-skill-metadata.schema.json",
+  "title": "OpenAI Skill Metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "interface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["display_name", "short_description", "default_prompt"],
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "short_description": {
+          "type": "string",
+          "minLength": 25,
+          "maxLength": 64
+        },
+        "icon_small": {
+          "type": "string",
+          "pattern": "^\\./"
+        },
+        "icon_large": {
+          "type": "string",
+          "pattern": "^\\./"
+        },
+        "brand_color": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        },
+        "default_prompt": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\$[a-z0-9][a-z0-9-]*[a-z0-9]"
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "allow_implicit_invocation": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "required": ["interface"]
+}

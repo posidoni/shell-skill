@@ -1,6 +1,6 @@
 {
   "name": "shell-skill",
-  "description": "Skills for writing safe, correct shell — Bash, Zsh, POSIX sh, and Nushell — for humans and AI coding agents.",
+  "description": "Shell Skill Kit: test-enforced skills for safe Bash, Zsh, POSIX sh, and Nushell.",
   "owner": {
     "name": "Mikhail Kuznetsov (@posidoni)"
   },
@@ -8,9 +8,9 @@
     {
       "name": "shell-skill",
       "source": "./",
-      "description": "Skills for writing safe, correct shell — Bash, Zsh, POSIX sh, and Nushell.",
+      "description": "Shell Skill Kit: safe shell rules for AI coding agents.",
       "category": "development",
-      "version": "0.1.0"
+      "version": "0.3.0"
     }
   ]
 }

@@ -6,8 +6,9 @@ Cursor, and any other tool that reads an `AGENTS.md`. Humans should start with
 
 ## What this repository is
 
-`shell-skill` teaches safe, correct shell (Bash, Zsh, POSIX `sh`) and Nushell
+Shell Skill Kit teaches safe, correct shell (Bash, Zsh, POSIX `sh`) and Nushell
 through cited rules, runnable good/bad examples, and loadable agent skills.
+The stable technical id remains `shell-skill`.
 
 ## Golden rules
 
@@ -19,14 +20,18 @@ through cited rules, runnable good/bad examples, and loadable agent skills.
    Use `$HOME`/`~` generically.
 4. **Local-only by default:** do not `git push`, change remotes, or alter
    repository visibility unless the human explicitly asks.
+5. **YAML is schema-backed:** every tracked `*.yml`, `*.yaml`, and
+   `CITATION.cff` starts with a `yaml-language-server` JSON Schema modeline.
 
 ## Workflow
 
 ```sh
 task --list      # discover every entrypoint
 task fmt         # format shell scripts (shfmt -w)
-task ci          # fmt-check, lint, examples, nushell, nushell-demo, test
+task ci          # fmt-check, lint, examples, nushell, nushell-demo, yaml-schemas, ai-integrations, test
 task hooks       # lefthook run pre-commit --all-files
+task yaml-schemas # ensure YAML-like files declare JSON Schemas
+task ai-integrations # validate Codex/ChatGPT discovery
 ```
 
 ## The example contract
@@ -57,3 +62,9 @@ Nushell examples are `*.nu` and must pass `nu --ide-check`.
 | `examples/<domain>/` | runnable good/bad pairs |
 | `tools/`, `tests/` | verification scripts and the bats suite |
 | `Taskfile.yml` | task runner entrypoints |
+| `.agents/skills/` | Codex repo-scope skill symlinks to `skills/` |
+| `.codex/config.toml` | trusted Codex project defaults |
+| `.codex-plugin/`, `.claude-plugin/` | Codex and Claude Code plugin manifests |
+| `CHATGPT.md`, `llms.txt` | ChatGPT/Codex handoff and crawler-friendly index |
+| `REGISTRY.md` | directory compatibility notes and listing drafts |
+| `schemas/` | project-owned JSON Schemas |

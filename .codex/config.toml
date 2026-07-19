@@ -1,0 +1,5 @@
+# Repo-scoped Codex defaults.
+# Loaded only for trusted checkouts; user security policy remains local.
+
+[features]
+multi_agent = true

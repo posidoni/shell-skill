@@ -236,3 +236,29 @@ the script — ideal for CI and pre-commit. This repo's `task nushell`
 
 See [`skills/nushell`](../skills/nushell/) for the agent-facing summary and
 [`examples/nushell/`](../examples/nushell/) for parse-clean fragments.
+
+## Invoking `nu` from an agent or a script
+
+Use `-n` (`--no-config-file`). Without it, `nu -c` loads the user's `config.nu` and
+`env.nu`, so the command inherits their aliases, `$env`, and any parse-time `source`
+— which makes an agent-run command non-deterministic and hostage to a config it did
+not write. That is the same parse-time failure documented above, arriving through the
+back door.
+
+| Form | Use for |
+| --- | --- |
+| `nu -n -c '...'` | **agent/CI one-liners** — no config, no env, deterministic |
+| `nu -n script.nu` | running a script file without user config |
+| `nu --stdin -c '...'` | piping data in; read it via `$in` |
+| `nu --no-newline -c '...'` | output destined for command substitution |
+| `#!/usr/bin/env nu` | a standalone executable script |
+| `nu -l` / `nu -i` | login / interactive shell — a human's shell, not a script's |
+
+Startup cost is small when the config is lean (~35ms vs ~25ms on a tuned machine), so
+determinism, not speed, is the reason.
+
+Check a script before shipping it:
+
+```sh
+nu --ide-check 0 script.nu   # parse + type errors, no execution
+```

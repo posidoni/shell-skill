@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
 # Taskfile — developer and CI entrypoints. Run `task` (or `task --list`) for the
 # menu. See https://taskfile.dev.
 #
@@ -50,6 +51,16 @@ tasks:
     cmds:
       - ./tests/nushell-startup-demo.sh
 
+  yaml-schemas:
+    desc: Check every tracked YAML-like file declares a JSON schema
+    cmds:
+      - ./tools/check-yaml-schemas.sh
+
+  ai-integrations:
+    desc: Validate Codex, ChatGPT, and plugin discovery surfaces
+    cmds:
+      - ./tools/check-ai-integrations.sh
+
   test:
     desc: Run the bats behavioural suite
     cmds:
@@ -61,11 +72,13 @@ tasks:
       - lefthook run pre-commit --all-files
 
   ci:
-    desc: Run everything CI runs
+    desc: Run the core quality gate
     cmds:
       - task: fmt-check
       - task: lint
       - task: examples
       - task: nushell
       - task: nushell-demo
+      - task: yaml-schemas
+      - task: ai-integrations
       - task: test

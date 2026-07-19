@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json.schemastore.org/dependabot-2.0.json
 # Keep pinned GitHub Actions up to date. https://docs.github.com/code-security/dependabot
 version: 2
 updates:

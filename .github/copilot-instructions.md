@@ -24,6 +24,8 @@ under [`skills/`](../skills/)).
   `shellcheck --severity=warning` and `shfmt`.
 - `*.bad.sh` must be safe to run and carry an `# expect-shellcheck:` directive.
 - Nushell `*.nu` must pass `nu --ide-check`.
+- Tracked YAML-like files (`*.yml`, `*.yaml`, `*.cff`) must start with a
+  `yaml-language-server` JSON Schema modeline.
 
 ## Verification
 
