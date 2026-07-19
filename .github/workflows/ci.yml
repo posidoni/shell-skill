@@ -39,5 +39,18 @@ jobs:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - name: Install toolchain (Homebrew)
         run: ./tools/ci-install-macos.sh
-      - name: Run full local gate
-        run: task ci
+      # Deliberately the shell gates only, NOT `task ci`. `task ci` also runs
+      # the nushell gate, and Homebrew's nu is unpinned -- the runner currently
+      # ships 0.113.1 against the 0.114.1 the Linux job pins, so the input/output
+      # signature in examples/nushell/03-typed-command.nu fails to parse there.
+      # That is version skew, not a platform difference: nu is one Rust binary
+      # and behaves the same on both. Linux owns the nushell gate at a pinned
+      # version; this job owns bash/shfmt/ShellCheck, which genuinely differ.
+      - name: Format check (shfmt)
+        run: task fmt-check
+      - name: Lint (shellcheck)
+        run: task lint
+      - name: Example contract (bad examples)
+        run: task examples
+      - name: Behavioural tests (bats)
+        run: task test
